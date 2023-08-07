@@ -1,0 +1,11 @@
+Model Information:
+* title:	Football
+* source:	https://sketchfab.com/3d-models/football-a2358fea94034c6fb7f563330af71bca
+* author:	oskarrimbe (https://sketchfab.com/oskarrimbe)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Football" (https://sketchfab.com/3d-models/football-a2358fea94034c6fb7f563330af71bca) by oskarrimbe (https://sketchfab.com/oskarrimbe) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
