@@ -12,7 +12,7 @@ const Ball = (props) => {
       <mesh castShadow receiveShadow scale={2.65}>
         <sphereGeometry args={[1]} />
         <meshStandardMaterial color="#fff8eb" polygonOffset polygonOffsetFactor={-5} />
-        <Decal map={decal} position={[0, 0, 1]} rotation={[2 * Math.PI, 0, 6.25]} scale={1.1} />
+        <Decal map={decal} position={[0, 0, 1]} rotation={[2 * Math.PI, 0, 6.25]} scale={1.2} />
       </mesh>
     </Float>
   )

@@ -41,6 +41,10 @@ const About = () => {
       <motion.p variants={fadeIn("", "", 0.1, 1)} className="mt-4 text-secondary text-[17px] max-w-3xl">
         For those who wish to, P2P will also assist in creating a passage way to professional and semi professional football.
       </motion.p>
+      <motion.p variants={fadeIn("", "", 0.1, 1)} className="mt-4 text-secondary text-[17px] max-w-3xl">
+
+        The long-term vision of the academy is to produce players of a standard so that if they choose, can go on to have a career in professional or semi-professional football.
+      </motion.p>
 
       <div className="mt-20 flex flex-wrap gap-10 justify-center items-stretch">
         {services.map((service, index) => (

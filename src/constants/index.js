@@ -77,16 +77,8 @@ const services = [
 
 const technologies = [
     {
-        name: "braintree",
-        icon: braintree,
-    },
-    {
         name: "brentford",
         icon: brentford,
-    },
-    {
-        name: "harlow",
-        icon: harlow,
     },
     {
         name: "oxford",
@@ -105,10 +97,6 @@ const technologies = [
         icon: southend,
     },
     {
-        name: "stalbans",
-        icon: stalbans,
-    },
-    {
         name: "stockport",
         icon: stockport,
     },
@@ -121,7 +109,7 @@ const experiences = [
         icon: star,
         date: "Week 1",
         points: [
-            "Into the first training session laying down the foundations of what we will be working on being technical or physical and ensuring all players are happy and comfortable in the environment.",
+            "Into the first training session we will be laying down the foundations of what we will be working on both technically & physically, ensuring all the players are happy and comfortable in the environment.",
         ],
     },
     {
@@ -130,7 +118,7 @@ const experiences = [
         icon: star,
         date: "Weeks 2-4",
         points: [
-            "Continually working on technical and physical aspects of the game, ensuring players can see their improvements in various areas.",
+            "Continuing work on the technical & physical aspects of the game, ensuring players can see their improvements in various areas.",
         ],
     },
     {
@@ -173,9 +161,9 @@ const testimonials = [
 
 const projects = [
     {
-        name: "Individual",
+        name: "Small Group Session",
         description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, eius molestias. Tempore minima vel illo sequi aliquid praesentium ab repellat soluta expedita cumque, ad perferendis quia ipsa accusamus? Exercitationem, tempora?",
+            "4-8 players. Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, eius molestias. Tempore minima vel illo sequi aliquid praesentium ab repellat soluta expedita cumque, ad perferendis quia ipsa accusamus? Exercitationem, tempora?",
         tags: [
             // {
             //     name: "react",
@@ -190,11 +178,12 @@ const projects = [
             //     color: "pink-text-gradient",
             // },
         ],
+        price: "£120 (£20 per session)",
         image: placeholder,
         source_code_link: "https://github.com/",
     },
     {
-        name: "Group of 4",
+        name: "1-1 Sessions",
         description:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, eius molestias. Tempore minima vel illo sequi aliquid praesentium ab repellat soluta expedita cumque, ad perferendis quia ipsa accusamus? Exercitationem, tempora?",
         tags: [
@@ -211,11 +200,12 @@ const projects = [
             //     color: "pink-text-gradient",
             // },
         ],
+        price: "£480 (£80 per session)",
         image: placeholder,
         source_code_link: "https://github.com/",
     },
     {
-        name: "Group of 8+",
+        name: "Holiday Camps",
         description:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, eius molestias. Tempore minima vel illo sequi aliquid praesentium ab repellat soluta expedita cumque, ad perferendis quia ipsa accusamus? Exercitationem, tempora?",
         tags: [
@@ -232,6 +222,7 @@ const projects = [
             //     color: "pink-text-gradient",
             // },
         ],
+        price: "Coming soon...",
         image: placeholder,
         source_code_link: "https://github.com/",
     },

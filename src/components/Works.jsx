@@ -12,6 +12,7 @@ const ProjectCard = ({
   index,
   name,
   description,
+  price,
   tags,
   image,
   source_code_link,
@@ -24,7 +25,7 @@ const ProjectCard = ({
           scale: 1,
           speed: 450,
         }}
-        className='bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full'
+        className='bg-primary shadow-white shadow-2xl p-5 rounded-2xl sm:w-[360px] w-full'
       >
         <div className='relative w-full h-[230px]'>
           <img
@@ -38,7 +39,7 @@ const ProjectCard = ({
 
         <div className='mt-5'>
           <h3 className='text-white font-bold text-[24px]'>{name}</h3>
-          <h3 className='text-white font-bold text-[24px]'>PRICE</h3>
+          <h3 className='text-white font-bold text-[24px]'>{price}</h3>
           <p className='mt-2 text-secondary text-[14px]'>{description}</p>
         </div>
 
