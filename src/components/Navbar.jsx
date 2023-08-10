@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { styles } from '../styles';
-import { navLinks } from '../constants';
-import { logo, menu, close } from '../assets';
+import { logo } from '../assets';
 
 const Navbar = () => {
   const [active, setActive] = useState('');
@@ -10,7 +9,7 @@ const Navbar = () => {
   return (
     <nav className={`${styles.paddingX} w-full flex items-center justify-center py-0 fixed top-0 z-20`}>
       <div className="bg-[#090909] w-[150%] -top-20 absolute -left-[25%] -z-10 blur-xl py-[100px]"></div>
-      <div className="w-full flex gap-8 justify-center items-center max-w-7xl mx-auto py-5">
+      <div className="w-full flex gap-8 justify-between items-center max-w-7xl mx-auto py-5">
         <Link to="/" className="flex items-center gap-2" onClick={() => {
           setActive("");
           window.scrollTo(0, 0)

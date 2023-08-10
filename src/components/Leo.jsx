@@ -5,7 +5,7 @@ import { leostats, technologies } from '../constants';
 import { styles } from '../styles';
 import { fadeIn, textVariant } from '../utils/motion';
 import { SectionWrapper } from '../hoc';
-import { logo, star, southend } from '../assets';
+import { logo, star } from '../assets';
 import { BallCanvas } from "./canvas";
 
 

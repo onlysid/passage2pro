@@ -1,76 +1,34 @@
 import {
-    mobile,
-    backend,
-    creator,
-    web,
     southend,
-    braintree,
     brentford,
-    harlow,
     oxford,
     reading,
     rushden,
-    stalbans,
     stockport,
-    javascript,
-    typescript,
-    html,
-    css,
-    reactjs,
-    redux,
-    tailwind,
-    nodejs,
-    mongodb,
-    git,
-    figma,
-    docker,
-    meta,
-    starbucks,
-    tesla,
-    shopify,
-    carrent,
     placeholder,
     star,
-    jobit,
-    tripguide,
-    threejs,
     leo,
 } from "../assets";
-
-export const navLinks = [
-    {
-        id: "about",
-        title: "About",
-    },
-    {
-        id: "work",
-        title: "Work",
-    },
-    {
-        id: "contact",
-        title: "Contact",
-    },
-];
 
 const services = [
     {
         title: "Technical",
-        icon: web,
+        icon: star,
         text: "To improve a players technical ability in various areas, from ball control/manipulation, passing, dribbling, turns, touch and more. "
     },
     {
         title: "Physical",
-        icon: mobile,
-        text: "To work on a players physical attributes including speed, strength, stamina, agility, balance."
+        icon: star,
+        text: "To work on a players physical attributes including speed, strength, stamina, agility, quick feet and balance."
     },
     {
         title: "Social",
-        icon: backend,
-        text: "To ensure a player is happy from when they walk in to when they walk out of each session. Being comfortable in the environment they are training in so they can happily and freely communicate and express themselves."
+        icon: star,
+        text: "To ensure all players are happy from the moment they walk in to a P2P session to the moment they walk out. Feeling comfortable in the environment they are training in, so they can happily and freely communicate and express themselves."
     },
     {
         title: "Psychological",
-        icon: creator,
+        icon: star,
         text: "To support each player so they have a positive mindset towards their training and can recognise their development/progress week on week."
     },
 ];
@@ -102,10 +60,10 @@ const technologies = [
     },
 ];
 
-const experiences = [
+const timelineEvents = [
     {
         title: "Step 1",
-        company_name: "Introduction",
+        subtitle: "Introduction",
         icon: star,
         date: "Week 1",
         points: [
@@ -114,7 +72,7 @@ const experiences = [
     },
     {
         title: "Step 2",
-        company_name: "Development",
+        subtitle: "Development",
         icon: star,
         date: "Weeks 2-4",
         points: [
@@ -123,7 +81,7 @@ const experiences = [
     },
     {
         title: "Step 3",
-        company_name: "Maximising Potential",
+        subtitle: "Maximising Potential",
         icon: star,
         date: "Weeks 5-6",
         points: [
@@ -226,10 +184,32 @@ const projects = [
         image: placeholder,
         source_code_link: "https://github.com/",
     },
+    {
+        name: "Finishing School",
+        description:
+            "This 6 week course focussing on attacking players in specifically focusses on shooting (Finishing). Different game like scenarios, types of finishing and the best techniques to use.",
+        tags: [
+            // {
+            //     name: "nextjs",
+            //     color: "blue-text-gradient",
+            // },
+            // {
+            //     name: "supabase",
+            //     color: "green-text-gradient",
+            // },
+            // {
+            //     name: "css",
+            //     color: "pink-text-gradient",
+            // },
+        ],
+        price: "Coming soon...",
+        image: placeholder,
+        source_code_link: "https://github.com/",
+    },
 ];
 
 const leostats = {
     image: leo,
 }
 
-export { services, technologies, experiences, testimonials, projects, leostats };
+export { services, technologies, timelineEvents, testimonials, projects, leostats };

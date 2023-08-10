@@ -1,23 +1,25 @@
 import { EarthCanvas, BallCanvas, FootballCanvas } from './canvas';
 import Hero from './Hero';
 import Navbar from './Navbar';
-import About from './About';
-import Experience from './Experience';
+import Overview from './Overview';
+import Timeline from './Timeline';
 import Works from './Works';
-import Feedbacks from './Feedbacks';
+import Testimonials from './Testimonials';
 import Contact from './Contact';
 import Leo from './Leo';
+import Gallery from './Gallery';
 
 export {
   Hero,
   Navbar,
-  About,
-  Experience,
+  Overview,
+  Timeline,
   Works,
-  Feedbacks,
+  Testimonials,
   Contact,
   EarthCanvas,
   BallCanvas,
   FootballCanvas,
-  Leo
+  Leo,
+  Gallery
 }

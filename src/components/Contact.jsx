@@ -2,7 +2,6 @@ import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import emailJs from '@emailjs/browser';
 import { styles } from '../styles';
-import { EarthCanvas } from './canvas';
 import { SectionWrapper } from '../hoc';
 import { slideIn } from '../utils/motion';
 
@@ -24,8 +23,8 @@ const Contact = () => {
         <h3 className={styles.sectionHeadText}>Enquire today.</h3>
 
         <form ref={formRef} onSubmit={handleSubmit} className="mt-12 flex flex-col gap-8">
-          <label className="flex flex-col"><span className="text-white font-medium mb-2">Your Name</span>
-            <input type="text" name="name" value={form.name} onChange={handleChange} placeholder="What's your name?" className="bg-logo py-4 px-6 rounded-lg text-white placeholder:text-dark border-none font-medium" />
+          <label className="flex flex-col"><span className="text-white font-medium mb-2">Your Child's Name</span>
+            <input type="text" name="name" value={form.name} onChange={handleChange} placeholder="What's your child's name?" className="bg-logo py-4 px-6 rounded-lg text-white placeholder:text-dark border-none font-medium" />
           </label>
           <label className="flex flex-col"><span className="text-white font-medium mb-2">Your Email</span>
             <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="What's your email?" className="bg-logo py-4 px-6 rounded-lg text-white placeholder:text-dark border-none font-medium" />
