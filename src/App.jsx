@@ -16,8 +16,8 @@ const App = () => {
           <Leo />
           <Timeline />
           <Works />
-          <Gallery />
           <Contact />
+          <Gallery />
           <Footer />
         </div>
       </div>
