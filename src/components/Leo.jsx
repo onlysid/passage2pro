@@ -53,7 +53,7 @@ const Leo = () => {
                                     <div className="w-full h-0.5 bg-dark rounded-full mb-0.5"></div>
                                     <div className="w-full h-0.5 bg-dark rounded-full mb-0.5"></div>
                                     <motion.p variants={fadeIn("", "", 0.1, 1)} className="mt-4 text-dark text-[15px] sm:text-[16px] text-center max-w-lg">
-                                        Leo is an ex professional footballer, playing just short of 300 games. Representing clubs such as Brentford, Southend, Oxford, Reading & Stockport County among others.
+                                        Leo is an-ex professional footballer, playing just short of 300 games. Representing clubs such as Brentford, Southend, Oxford, Reading & Stockport County among others.
                                     </motion.p>
                                 </div>
                             </div>
@@ -65,7 +65,7 @@ const Leo = () => {
             <div className="w-full flex items-center flex-col mt-8">
 
                 <motion.p variants={fadeIn("", "", 0.1, 1)} className="mt-4 text-secondary text-[17px] max-w-3xl text-center">
-                    Having coached at a professional and semi-professional level and with over 15 years experience, Leo has the knowledge and expertise to bring the best out of aspiring footballers.
+                    Having coached at a professional and semi-professional level and with over 15 years' experience, Leo has the knowledge and expertise to bring the best out of aspiring footballers.
                 </motion.p>
                 <motion.p variants={fadeIn("", "", 0.1, 1)} className="mt-4 text-secondary text-[17px] max-w-3xl text-center">
                     Leo is a level 3 licensed UEFA B qualified coach and P2P is a fully insured and licensed football academy.
