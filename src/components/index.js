@@ -8,6 +8,7 @@ import Testimonials from './Testimonials';
 import Contact from './Contact';
 import Leo from './Leo';
 import Gallery from './Gallery';
+import Footer from './Footer';
 
 export {
   Hero,
@@ -21,5 +22,6 @@ export {
   BallCanvas,
   FootballCanvas,
   Leo,
-  Gallery
+  Gallery,
+  Footer
 }
