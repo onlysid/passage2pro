@@ -124,7 +124,7 @@ const projects = [
         name: "Small Group Session: 4-8 Players",
         description:
             "Small group training allows players to work not only on their individual game but also with others of a similar level. Being in a group naturally makes certain drills and exercises more game realistic and allows further player development.",
-        image: images.img00017,
+        image: images.img00024,
         extra: ["£120 (£20 per session)"],
     },
     {
