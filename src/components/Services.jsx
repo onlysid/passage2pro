@@ -16,7 +16,7 @@ const ProjectCard = ({
   extra,
 }) => {
   return (
-    <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)} className="grow basis-[500px]">
+    <div className="grow basis-[500px]">
       <Tilt
         options={{
           max: 20,
@@ -51,17 +51,17 @@ const ProjectCard = ({
           ))}
         </div>
       </Tilt>
-    </motion.div>
+    </div>
   );
 };
 
 const Services = () => {
   return (
     <>
-      <motion.div variants={textVariant()}>
+      <div>
         <p className={`${styles.sectionSubText} `}>Pricing</p>
         <h2 className={`${styles.sectionHeadText}`}>Services.</h2>
-      </motion.div>
+      </div>
 
       <div className='mt-10 flex flex-wrap items-stretch gap-7 justify-center'>
         {projects.map((project, index) => (
