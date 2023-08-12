@@ -1,5 +1,5 @@
 import placeholder from "./placeholder.png";
-import leo from "./leo.png";
+import leo from "./leo-p2p.png";
 import star from "./star.png";
 import logo from "./logo.png";
 

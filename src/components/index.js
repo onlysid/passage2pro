@@ -3,7 +3,7 @@ import Hero from './Hero';
 import Navbar from './Navbar';
 import Overview from './Overview';
 import Timeline from './Timeline';
-import Works from './Works';
+import Works from './Services';
 import Testimonials from './Testimonials';
 import Contact from './Contact';
 import Leo from './Leo';

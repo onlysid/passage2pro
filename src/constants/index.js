@@ -122,42 +122,14 @@ const projects = [
         name: "Small Group Session",
         description:
             "4-8 players. Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, eius molestias. Tempore minima vel illo sequi aliquid praesentium ab repellat soluta expedita cumque, ad perferendis quia ipsa accusamus? Exercitationem, tempora?",
-        tags: [
-            // {
-            //     name: "react",
-            //     color: "blue-text-gradient",
-            // },
-            // {
-            //     name: "mongodb",
-            //     color: "green-text-gradient",
-            // },
-            // {
-            //     name: "tailwind",
-            //     color: "pink-text-gradient",
-            // },
-        ],
         price: "£120 (£20 per session)",
         image: placeholder,
         source_code_link: "https://github.com/",
     },
     {
-        name: "1-1 Sessions",
+        name: "One to One Sessions",
         description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, eius molestias. Tempore minima vel illo sequi aliquid praesentium ab repellat soluta expedita cumque, ad perferendis quia ipsa accusamus? Exercitationem, tempora?",
-        tags: [
-            // {
-            //     name: "react",
-            //     color: "blue-text-gradient",
-            // },
-            // {
-            //     name: "restapi",
-            //     color: "green-text-gradient",
-            // },
-            // {
-            //     name: "scss",
-            //     color: "pink-text-gradient",
-            // },
-        ],
+            "Training strictly customised to developing the attributes the individual needs and wants to work on. EG Speed, Technique, Strength, Agility, Finishing etc. One to one sessions are also run as 6 week courses with the option of 60 or 30 min sessions.",
         price: "£480 (£80 per session)",
         image: placeholder,
         source_code_link: "https://github.com/",
@@ -165,21 +137,7 @@ const projects = [
     {
         name: "Holiday Camps",
         description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, eius molestias. Tempore minima vel illo sequi aliquid praesentium ab repellat soluta expedita cumque, ad perferendis quia ipsa accusamus? Exercitationem, tempora?",
-        tags: [
-            // {
-            //     name: "nextjs",
-            //     color: "blue-text-gradient",
-            // },
-            // {
-            //     name: "supabase",
-            //     color: "green-text-gradient",
-            // },
-            // {
-            //     name: "css",
-            //     color: "pink-text-gradient",
-            // },
-        ],
+            "All day camps run during the school holidays. These camps are designed to be fun filled whilst improving and developing all that attend. All members of staff have been fully CRB checked and are FA qualified coaches.",
         price: "Coming soon...",
         image: placeholder,
         source_code_link: "https://github.com/",
@@ -187,21 +145,7 @@ const projects = [
     {
         name: "Finishing School",
         description:
-            "This 6 week course focussing on attacking players in specifically focusses on shooting (Finishing). Different game like scenarios, types of finishing and the best techniques to use.",
-        tags: [
-            // {
-            //     name: "nextjs",
-            //     color: "blue-text-gradient",
-            // },
-            // {
-            //     name: "supabase",
-            //     color: "green-text-gradient",
-            // },
-            // {
-            //     name: "css",
-            //     color: "pink-text-gradient",
-            // },
-        ],
+            "This specialised course concentrates on shooting. Open to players of all positions but naturally for the more attacking players EG Strikers, Forwards, Wingers, Attacking Midfielders. The art of scoring goals can be created in many forms and situations. Having the correct techniques, being ruthless but relaxed at the same time is invaluable. ",
         price: "Coming soon...",
         image: placeholder,
         source_code_link: "https://github.com/",

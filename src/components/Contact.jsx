@@ -23,17 +23,31 @@ const Contact = () => {
         <h3 className={styles.sectionHeadText}>Enquire today.</h3>
 
         <form ref={formRef} onSubmit={handleSubmit} className="mt-12 flex flex-col gap-8">
-          <label className="flex flex-col"><span className="text-white font-medium mb-2">Your Child's Name</span>
-            <input type="text" name="name" value={form.name} onChange={handleChange} placeholder="What's your child's name?" className="bg-logo py-4 px-6 rounded-lg text-white placeholder:text-dark border-none font-medium" />
+          <label className="flex flex-col"><span className="text-white font-medium mb-2">Your Name</span>
+            <input type="text" name="name" value={form.name} onChange={handleChange} placeholder="What's the player's name?" className="bg-[#ffea76] py-4 px-6 rounded-lg text-white placeholder:text-dark border-none font-medium" />
+          </label>
+          <label className="flex flex-col"><span className="text-white font-medium mb-2">Player's Name</span>
+            <input type="text" name="pname" value={form.name} onChange={handleChange} placeholder="What's your name?" className="bg-[#ffea76] py-4 px-6 rounded-lg text-white placeholder:text-dark border-none font-medium" />
           </label>
           <label className="flex flex-col"><span className="text-white font-medium mb-2">Your Email</span>
-            <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="What's your email?" className="bg-logo py-4 px-6 rounded-lg text-white placeholder:text-dark border-none font-medium" />
+            <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="What's your email?" className="bg-[#ffea76] py-4 px-6 rounded-lg text-white placeholder:text-dark border-none font-medium" />
           </label>
           <label className="flex flex-col"><span className="text-white font-medium mb-2">Your Number</span>
-            <input type="tel" name="tel" value={form.email} onChange={handleChange} placeholder="What's your number?" className="bg-logo py-4 px-6 rounded-lg text-white placeholder:text-dark border-none font-medium" />
+            <input type="tel" name="tel" value={form.email} onChange={handleChange} placeholder="What's your number?" className="bg-[#ffea76] py-4 px-6 rounded-lg text-white placeholder:text-dark border-none font-medium" />
+          </label>
+          <label className="flex flex-col"><span className="text-white font-medium mb-2">Your Number</span>
+            <input type="tel" name="tel" value={form.email} onChange={handleChange} placeholder="What's your number?" className="bg-[#ffea76] py-4 px-6 rounded-lg text-white placeholder:text-dark border-none font-medium" />
+          </label>
+          <label className="flex flex-col"><span className="text-white font-medium mb-2">Your Number</span>
+            <select name="cars" id="cars">
+              <option value="group">Small Group</option>
+              <option value="individual">One to One</option>
+              <option value="camps">Holiday Camps</option>
+              <option value="finishing">Finishing School</option>
+            </select>
           </label>
           <label className="flex flex-col"><span className="text-white font-medium mb-2">Your Message</span>
-            <textarea type="textarea" rows="7" name="message" value={form.message} onChange={handleChange} placeholder="What do you want to say?" className="bg-logo py-4 px-6 rounded-lg text-white placeholder:text-dark border-none font-medium" />
+            <textarea type="textarea" rows="7" name="message" value={form.message} onChange={handleChange} placeholder="What do you want to say?" className="bg-[#ffea76] py-4 px-6 rounded-lg text-white placeholder:text-dark border-none font-medium" />
           </label>
 
           <button type="submit" className="bg-logo max-w-max text-dark shadow-2xl shadow-gray px-8 py-4 rounded-bl-xl rounded-tr-3xl uppercase font-bold transition-all duration-500 hover:shadow-white hover:bg-primary hover:text-white hover:rounded-tr-none hover:rounded-bl-none hover:rounded-tl-xl hover:rounded-br-xl hover:tracking-widest relative group hover:px-12">
