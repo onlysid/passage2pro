@@ -10,12 +10,7 @@ import {
     leo,
 } from "../assets";
 
-import {
-    img00017,
-    img00019,
-    img00003,
-    footballacademy
-} from "../assets/images";
+import * as images from "../assets/images";
 
 const services = [
     {
@@ -130,7 +125,7 @@ const projects = [
         description:
             "4-8 players. Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, eius molestias. Tempore minima vel illo sequi aliquid praesentium ab repellat soluta expedita cumque, ad perferendis quia ipsa accusamus? Exercitationem, tempora?",
         price: "£120 (£20 per session)",
-        image: img00017,
+        image: images.img00017,
         source_code_link: "https://github.com/",
     },
     {
@@ -138,7 +133,7 @@ const projects = [
         description:
             "Training strictly customised to developing the attributes the individual needs and wants to work on. EG Speed, Technique, Strength, Agility, Finishing etc. One to one sessions are also run as 6 week courses with the option of 60 or 30 min sessions.",
         price: "£480 (£80 per session)",
-        image: img00019,
+        image: images.img00019,
         source_code_link: "https://github.com/",
     },
     {
@@ -146,7 +141,7 @@ const projects = [
         description:
             "All day camps run during the school holidays. These camps are designed to be fun filled whilst improving and developing all that attend. All members of staff have been fully CRB checked and are FA qualified coaches.",
         price: "Coming soon...",
-        image: footballacademy,
+        image: images.footballacademy,
         source_code_link: "https://github.com/",
     },
     {
@@ -154,7 +149,7 @@ const projects = [
         description:
             "This specialised course concentrates on shooting. Open to players of all positions but naturally for the more attacking players EG Strikers, Forwards, Wingers, Attacking Midfielders. The art of scoring goals can be created in many forms and situations. Having the correct techniques, being ruthless but relaxed at the same time is invaluable. ",
         price: "Coming soon...",
-        image: img00003,
+        image: images.img00003,
         source_code_link: "https://github.com/",
     },
 ];
