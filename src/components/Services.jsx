@@ -11,7 +11,6 @@ const ProjectCard = ({
   index,
   name,
   description,
-  price,
   image,
   extra,
 }) => {
@@ -34,22 +33,22 @@ const ProjectCard = ({
         </div>
 
         <div className='mt-5'>
-          <h3 className={`${index == 0 ? "text-logo" : "text-white"}  font-bold text-[28px]`}>{name}</h3>
+          <h3 className={`${index == 0 ? "text-logo" : "text-white"}  font-bold text-[28px] mb-3`}>{name}</h3>
           <hr />
-          <h3 className='mt-4 text-white font-bold text-[22px]'>{price}</h3>
-          <p className='mt-2 text-secondary text-[16px]'>{description}</p>
+          <p className='mt-3 text-secondary text-[16px]'>{description}</p>
         </div>
 
-        <div className='mt-4 flex flex-wrap gap-2'>
+        <div className='my-4 flex flex-wrap gap-2'>
           {extra.map((tag) => (
-            <p
+            <h3
               key={`${name}-${tag.name}`}
-              className={`text-[14px]`}
+              className={`text-[18px] font-bold`}
             >
-              - {tag}
-            </p>
+              {tag}
+            </h3>
           ))}
         </div>
+        <hr />
       </Tilt>
     </div>
   );

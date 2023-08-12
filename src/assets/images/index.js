@@ -22,6 +22,7 @@ import img00021 from "./Img00021.jpg";
 import img00022 from "./Img00022.jpg";
 import img00023 from "./Img00023.jpg";
 import img00024 from "./Img00024.jpg";
+import img00025 from "./Img00025.jpg";
 import footballacademy from "./footballacademy.jpg";
 
 const images = [
@@ -49,6 +50,7 @@ const images = [
     img00022,
     img00023,
     img00024,
+    img00025,
 ]
 
 export {
@@ -77,5 +79,6 @@ export {
     img00022,
     img00023,
     img00024,
+    img00025,
     footballacademy,
 };

@@ -124,16 +124,14 @@ const projects = [
         name: "Small Group Session: 4-8 Players",
         description:
             "Small group training allows players to work not only on their individual game but also with others of a similar level. Being in a group naturally makes certain drills and exercises more game realistic and allows further player development.",
-        price: "£120 (£20 per session)",
-        image: images.img00024,
-        extra: [],
+        image: images.img00017,
+        extra: ["£120 (£20 per session)"],
     },
     {
         name: "One to One Sessions",
         description:
             "Training strictly customised to developing the attributes that the individual needs and wants to work on. eg Speed, Technique, Strength, Agility, Finishing etc. One to one sessions are also run as 6 week courses with the option of 60 or 30 min sessions.",
-        price: "£480 (£80 per session)",
-        image: images.img00023,
+        image: images.img00013,
         extra: [
             "1hr Sessions: £420 for 6 Weeks (£70/Session)",
             "30min Sessions: £210 for 6 Weeks (£35/Session)"
@@ -143,17 +141,15 @@ const projects = [
         name: "Finishing School",
         description:
             "This specialised course concentrates on shooting. Open to players of all positions but naturally for the more attacking players eg. Strikers, Forwards, Wingers and Attacking Midfielders. The art of scoring goals can be created in many forms and situations. Having the correct techniques, being ruthless but relaxed at the same time is invaluable. ",
-        price: "Coming soon...",
         image: images.img00003,
-        extra: [],
+        extra: ["£120 (£20 per session)"],
     },
     {
         name: "Holiday Camps",
         description:
             "All day camps run during the school holidays. These camps are designed to be fun-filled whilst improving and developing all that attend. All members of staff have been fully CRB checked and are FA qualified coaches.",
-        price: "Coming soon...",
         image: images.footballacademy,
-        extra: [],
+        extra: ["Coming soon..."],
     },
 ];
 
