@@ -24,11 +24,11 @@ const ProjectCard = ({
         }}
         className={`bg-primary shadow-2xl p-5 rounded-2xl h-full w-full border-solid border-8 ${index == 0 ? "border-logo shadow-logo/70" : "shadow-white/50"}`}
       >
-        <div className='relative w-full h-[330px]'>
+        <div className='relative w-full h-[300px]'>
           <img
             src={image}
             alt='project_image'
-            className='w-full h-full object-cover object-top rounded-2xl'
+            className='w-full h-full object-cover object-center rounded-2xl'
           />
         </div>
 
