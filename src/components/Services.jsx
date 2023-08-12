@@ -12,31 +12,30 @@ const ProjectCard = ({
   name,
   description,
   price,
-  tags,
   image,
-  source_code_link,
 }) => {
   return (
-    <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}>
+    <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)} className="grow basis-[500px]">
       <Tilt
         options={{
           max: 45,
           scale: 1,
           speed: 450,
         }}
-        className='bg-primary shadow-white shadow-2xl p-5 rounded-2xl sm:w-[360px] w-full'
+        className={`bg-primary shadow-2xl p-5 rounded-2xl h-full w-full border-solid border-8 ${index == 0 ? "border-logo shadow-logo/70" : "shadow-white/50"}`}
       >
-        <div className='relative w-full h-[230px]'>
+        <div className='relative w-full h-[300px]'>
           <img
             src={image}
             alt='project_image'
-            className='w-full h-full object-cover rounded-2xl'
+            className='w-full h-full object-cover object-top rounded-2xl'
           />
         </div>
 
         <div className='mt-5'>
-          <h3 className='text-white font-bold text-[24px]'>{name}</h3>
-          <h3 className='text-white font-bold text-[24px]'>{price}</h3>
+          <h3 className={`${index == 0 ? "text-logo" : "text-white"}  font-bold text-[28px]`}>{name}</h3>
+          <hr />
+          <h3 className='mt-4 text-white font-bold text-[22px]'>{price}</h3>
           <p className='mt-2 text-secondary text-[14px]'>{description}</p>
         </div>
       </Tilt>
@@ -52,10 +51,7 @@ const Services = () => {
         <h2 className={`${styles.sectionHeadText}`}>Services.</h2>
       </motion.div>
 
-      <div className='w-full flex'>
-      </div>
-
-      <div className='mt-10 flex flex-wrap gap-7 justify-center'>
+      <div className='mt-10 flex flex-wrap items-stretch gap-7 justify-center'>
         {projects.map((project, index) => (
           <ProjectCard key={`project-${index}`} index={index} {...project} />
         ))}
