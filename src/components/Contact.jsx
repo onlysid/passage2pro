@@ -25,13 +25,14 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
 
-    emailJs.send('service_iy2qgy5', 'template_kle8u8k', { from_name: form.name, to_name: 'Leo', from_email: form.email, to_email: 'p2pfootballacademy@gmail.com', message: form.message, player_name: form.pname, phone_number: form.tel, class: form.class }, 'DOGeX_gtySU7Lggbv').then(() => {
+    emailJs.send('service_iy2qgy5', 'template_kle8u8k', { from_name: form.name, to_name: 'Leo', from_email: form.email, to_email: 'p2pfootballacademy@gmail.com', message: form.message, player_name: form.pname, phone_number: form.tel, class: form.class, age: form.age }, 'DOGeX_gtySU7Lggbv').then(() => {
       setLoading(false);
       alert('Thank you. We will get back to you as soon as possible.');
 
       setForm({
         name: '',
         pname: '',
+        age: '',
         email: '',
         tel: '',
         class: 'group',
@@ -57,6 +58,9 @@ const Contact = () => {
           <label className="flex flex-col"><span className="text-white font-medium mb-2">Player's Name</span>
             <input required type="text" name="pname" value={form.pname} onChange={handleChange} placeholder="What's your name?" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
           </label>
+          <label className="flex flex-col"><span className="text-white font-medium mb-2">Player's Age</span>
+            <input required type="number" name="age" min="4" max="90" value={form.age} onChange={handleChange} placeholder="What's your name?" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
+          </label>
           <label className="flex flex-col"><span className="text-white font-medium mb-2">Your Email</span>
             <input required type="email" name="email" value={form.email} onChange={handleChange} placeholder="What's your email?" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
           </label>
@@ -64,7 +68,7 @@ const Contact = () => {
             <input required type="tel" name="tel" value={form.tel} onChange={handleChange} placeholder="What's your number?" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
           </label>
           <label className="flex flex-col"><span className="text-white font-medium mb-2">Which class would you like to join?</span>
-            <select value={form.class} name="class" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium">
+            <select value={form.class} name="class" onChange={handleChange} className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium">
               <option value="group">Small Group</option>
               <option value="individual">One to One</option>
               <option value="camps">Holiday Camps</option>

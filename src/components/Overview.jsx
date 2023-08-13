@@ -46,7 +46,12 @@ const About = () => {
         The long-term vision of the academy is to produce players of a standard such that if they choose, they can go on to have a career in professional or semi-professional football.
       </motion.p>
 
-      <div className="mt-20 flex flex-wrap gap-10 justify-center items-stretch">
+      <motion.div variants={textVariant()} className="mt-20">
+        <p className={styles.sectionSubText}>Introduction</p>
+        <h2 className={styles.sectionHeadText}>Overview</h2>
+      </motion.div>
+
+      <div className="mt-5 flex flex-wrap gap-10 justify-center items-stretch">
         {services.map((service, index) => (
           <ServiceCard key={service.title} index={index} {...service} />
         ))}

@@ -1,11 +1,8 @@
 import React from "react";
 import { Tilt } from "react-tilt";
-import { motion } from "framer-motion";
-
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
 import { projects } from "../constants";
-import { fadeIn, textVariant } from "../utils/motion";
 
 const ProjectCard = ({
   index,
@@ -41,7 +38,7 @@ const ProjectCard = ({
         <div className='my-4 flex flex-wrap gap-2'>
           {extra.map((tag) => (
             <h3
-              key={`${name}-${tag.name}`}
+              key={`${tag}-${index}`}
               className={`text-[18px] font-bold`}
             >
               {tag}
@@ -67,8 +64,14 @@ const Services = () => {
           <ProjectCard key={`project-${index}`} index={index} {...project} />
         ))}
       </div>
+
+      <div>
+        <p className={`${styles.sectionSubText} my-8 text-center`}>* All courses run for 6 weeks</p>
+      </div>
+
+      <hr />
     </>
   );
 };
 
-export default SectionWrapper(Services, "");
+export default SectionWrapper(Services, "services");

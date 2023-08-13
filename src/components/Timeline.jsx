@@ -33,7 +33,7 @@ const Timeline = () => {
     <>
       <motion.div variants={textVariant()}>
         <p className={styles.sectionSubText}>How it works</p>
-        <h2 className={styles.sectionHeadText}>Timeline 2 Pro</h2>
+        <h2 className={styles.sectionHeadText}>P2P Course Timeline</h2>
       </motion.div>
 
       <div className="mt-8 flex flex-col">
