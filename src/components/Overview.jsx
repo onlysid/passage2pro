@@ -47,8 +47,7 @@ const About = () => {
       </motion.p>
 
       <motion.div variants={textVariant()} className="mt-20">
-        <p className={styles.sectionSubText}>Introduction</p>
-        <h2 className={styles.sectionHeadText}>Overview</h2>
+        <h2 className={styles.sectionHeadText}>The 4 Pillars of Player Development</h2>
       </motion.div>
 
       <div className="mt-5 flex flex-wrap gap-10 justify-center items-stretch">
