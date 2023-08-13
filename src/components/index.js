@@ -9,6 +9,7 @@ import Contact from './Contact';
 import Leo from './Leo';
 import Gallery from './Gallery';
 import Footer from './Footer';
+import Socials from './Socials';
 
 export {
   Hero,
@@ -23,5 +24,6 @@ export {
   FootballCanvas,
   Leo,
   Gallery,
-  Footer
+  Footer,
+  Socials
 }

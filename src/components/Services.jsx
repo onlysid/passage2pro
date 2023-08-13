@@ -59,17 +59,19 @@ const Services = () => {
         <h2 className={`${styles.sectionHeadText}`}>Services.</h2>
       </div>
 
-      <div className='mt-10 flex flex-wrap items-stretch gap-7 justify-center'>
+      <hr />
+      <div>
+        <p className={`${styles.sectionSubText} my-8 text-center`}>* All courses run for 6 weeks</p>
+      </div>
+
+      <div className='my-10 flex flex-wrap items-stretch gap-7 justify-center'>
         {projects.map((project, index) => (
           <ProjectCard key={`project-${index}`} index={index} {...project} />
         ))}
       </div>
 
-      <div>
-        <p className={`${styles.sectionSubText} my-8 text-center`}>* All courses run for 6 weeks</p>
-      </div>
-
       <hr />
+
     </>
   );
 };

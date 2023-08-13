@@ -53,13 +53,13 @@ const Contact = () => {
 
         <form ref={formRef} onSubmit={handleSubmit} className="mt-8 flex flex-col gap-5">
           <label className="flex flex-col"><span className="text-white font-medium mb-2">Your Name</span>
-            <input required type="text" name="name" value={form.name} onChange={handleChange} placeholder="What's the player's name?" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
+            <input required type="text" name="name" value={form.name} onChange={handleChange} placeholder="What's your name?" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
           </label>
           <label className="flex flex-col"><span className="text-white font-medium mb-2">Player's Name</span>
-            <input required type="text" name="pname" value={form.pname} onChange={handleChange} placeholder="What's your name?" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
+            <input required type="text" name="pname" value={form.pname} onChange={handleChange} placeholder="What's the player's name?" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
           </label>
           <label className="flex flex-col"><span className="text-white font-medium mb-2">Player's Age</span>
-            <input required type="number" name="age" min="4" max="90" value={form.age} onChange={handleChange} placeholder="What's your name?" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
+            <input required type="number" name="age" min="4" max="90" value={form.age} onChange={handleChange} placeholder="What's the player's age?" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
           </label>
           <label className="flex flex-col"><span className="text-white font-medium mb-2">Your Email</span>
             <input required type="email" name="email" value={form.email} onChange={handleChange} placeholder="What's your email?" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
