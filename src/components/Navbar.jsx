@@ -16,7 +16,7 @@ const Navbar = () => {
         }}>
           <img src={logo} alt="logo" className="h-28 lg:h-32 object-contain" />
         </Link>
-        <a href="#contact" className="bg-logo max-w-max text-dark shadow-2xl shadow-gray px-8 py-4 rounded-bl-xl rounded-tr-3xl uppercase font-bold transition-all duration-500 lg:hover:shadow-white lg:hover:bg-primary lg:hover:text-white lg:hover:rounded-tr-none lg:hover:rounded-bl-none lg:hover:rounded-tl-xl lg:hover:rounded-br-xl lg:hover:tracking-widest relative group lg:hover:px-12">Book Now!<span className="absolute w-full max-w-0 transition-all duration-500 group-hover:max-w-3xl -bottom-4 h-[5px] bg-white left-0 rounded-full origin-left shadow-white shadow-2xl"></span></a>
+        <a href="#contact" className="bg-logo max-w-max text-dark shadow-2xl shadow-gray px-8 py-4 rounded-bl-xl rounded-tr-3xl uppercase font-bold transition-all duration-500 lg:hover:shadow-white lg:hover:bg-primary lg:hover:text-white lg:hover:rounded-tr-none lg:hover:rounded-bl-none lg:hover:rounded-tl-xl lg:hover:rounded-br-xl lg:hover:tracking-widest relative group lg:hover:px-12">Enquire Now!<span className="absolute w-full max-w-0 transition-all duration-500 group-hover:max-w-3xl -bottom-4 h-[5px] bg-white left-0 rounded-full origin-left shadow-white shadow-2xl"></span></a>
 
 
         {/* <div className="transition-all duration-300 group hover:scale-110">

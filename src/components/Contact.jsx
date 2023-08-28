@@ -48,7 +48,7 @@ const Contact = () => {
   return (
     <div className="xl:mt-12 xl:flex-row flex-col-reverse flex gap-10 overflow-hidden justify-center items-center">
       <motion.div variants={slideIn('left', "tween", 0.2, 1)} className="flex-1 bg-black-100 w-full p-8 rounded-2xl">
-        <p className={styles.sectionSubText}>Book Now</p>
+        <p className={styles.sectionSubText}>Send us a message</p>
         <h3 className={styles.sectionHeadText}>Enquire today.</h3>
 
         <form ref={formRef} onSubmit={handleSubmit} className="mt-8 flex flex-col gap-5">
