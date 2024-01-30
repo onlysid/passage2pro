@@ -7,14 +7,18 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "watch": "npx tailwind -i ./src/input.css -o ./src/output.css --watch",
     "preview": "vite preview"
   },
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
     "@react-three/drei": "^9.80.0",
     "@react-three/fiber": "^8.13.6",
+    "axios": "^1.6.7",
     "framer-motion": "^10.15.0",
     "maath": "^0.7.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.9.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-photo-album": "^2.2.2",
@@ -22,7 +26,8 @@
     "react-router-dom": "^6.14.2",
     "react-tilt": "^1.0.2",
     "react-vertical-timeline-component": "^3.6.0",
-    "three": "^0.155.0"
+    "three": "^0.155.0",
+    "vue": "^3.4.15"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
@@ -35,6 +40,6 @@
     "eslint-plugin-react-refresh": "^0.4.3",
     "postcss": "^8.4.27",
     "tailwindcss": "^3.3.3",
-    "vite": "^4.4.5"
+    "vite": "^4.5.2"
   }
 }
