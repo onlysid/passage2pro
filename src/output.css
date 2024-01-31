@@ -878,6 +878,10 @@ video {
   max-width: max-content;
 }
 
+.max-w-full {
+  max-width: 100%;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -1245,6 +1249,10 @@ video {
 
 .p-\[3px\] {
   padding: 3px;
+}
+
+.p-4 {
+  padding: 1rem;
 }
 
 .px-12 {
@@ -1854,5 +1862,9 @@ video {
 
   .xl\:flex-row {
     flex-direction: row;
+  }
+
+  .xl\:p-8 {
+    padding: 2rem;
   }
 }

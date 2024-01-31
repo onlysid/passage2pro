@@ -78,7 +78,7 @@ const handleDiscountCode = async () => {
 
   return (
     <div className="xl:mt-12 xl:flex-row flex-col-reverse flex gap-10 overflow-hidden justify-center items-center">
-      <motion.div variants={slideIn('left', "tween", 0.2, 1)} className="flex-1 bg-black-100 w-full p-8 rounded-2xl">
+      <motion.div variants={slideIn('left', "tween", 0.2, 1)} className="flex-1 bg-black-100 w-full p-4 xl:p-8 rounded-2xl">
         <p className={styles.sectionSubText}>Send us a message</p>
         <h3 className={styles.sectionHeadText}>Enquire today.</h3>
 
@@ -118,8 +118,8 @@ const handleDiscountCode = async () => {
             <button className="bg-white max-w-max text-dark shadow-2xl shadow-gray px-6 py-3 rounded-bl-xl rounded-tr-3xl uppercase font-bold transition-all duration-500 hover:shadow-white hover:bg-primary hover:text-white hover:rounded-tr-none hover:rounded-bl-none hover:rounded-tl-xl hover:rounded-br-xl" type="button" onClick={() => setShowDiscountCode(true)}>Have a discount code?</button>
             )}
             {showDiscountCode && (
-              <div className="gap-4 flex">
-                <input name="discount" placeholder='Enter Code' className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" type="text" value={discountCode} onChange={(e) => setDiscountCode(e.target.value)} />
+              <div className="gap-4 flex flex-wrap">
+                <input name="discount" placeholder='Enter Code' className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium max-w-full" type="text" value={discountCode} onChange={(e) => setDiscountCode(e.target.value)} />
                 <button className="bg-white max-w-max text-dark shadow-2xl shadow-gray px-6 py-3 rounded-bl-xl rounded-tr-3xl uppercase font-bold transition-all duration-500 hover:shadow-white hover:bg-green-800 hover:text-white hover:rounded-tr-none hover:rounded-bl-none hover:rounded-tl-xl hover:rounded-br-xl" type="button" onClick={handleDiscountCode}>Apply</button>
               </div>
             )}
