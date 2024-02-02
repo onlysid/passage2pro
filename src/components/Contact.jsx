@@ -110,6 +110,9 @@ const handleDiscountCode = async () => {
               <option value="finishing">Finishing School</option>
             </select>
           </label>
+          <label className="flex flex-col"><span className="text-white font-medium mb-2">Player's Team</span>
+            <input required type="number" name="age" min="4" max="90" value={form.age} onChange={handleChange} placeholder="What team do you play for? (if any)" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
+          </label>
           <label className="flex flex-col"><span className="text-white font-medium mb-2">Your Message</span>
             <textarea type="textarea" rows="3" name="message" value={form.message} onChange={handleChange} placeholder="What do you want to say?" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
           </label>

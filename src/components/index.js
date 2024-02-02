@@ -10,6 +10,7 @@ import Leo from './Leo';
 import Gallery from './Gallery';
 import Footer from './Footer';
 import Socials from './Socials';
+import ProtectedRoute from './ProtectedRoute';
 
 export {
   Hero,
@@ -25,5 +26,6 @@ export {
   Leo,
   Gallery,
   Footer,
-  Socials
+  Socials,
+  ProtectedRoute
 }
