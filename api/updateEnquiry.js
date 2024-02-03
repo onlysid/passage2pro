@@ -2,8 +2,8 @@ import { createConnection } from 'mysql';
 
 export default (req, res) => {
   const {
-    query: { id },
     method,
+    body: { id, confirmed },
   } = req;
 
   const db = createConnection({
@@ -20,12 +20,11 @@ export default (req, res) => {
 
     switch (method) {
       case 'PUT':
-        const { confirmed } = req.body;
         const query = 'UPDATE enquiries SET confirmed = ? WHERE id = ?';
         db.query(query, [confirmed, id], (err, results) => {
           if (err) {
-              return res.status(500).json({ error: 'Error updating database' });
-            }
+            return res.status(500).json({ error: 'Error updating database' });
+          }
           res.json({ message: 'Enquiry updated successfully' });
         });
         break;

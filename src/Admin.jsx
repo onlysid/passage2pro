@@ -63,7 +63,8 @@ const AdminPage = () => {
   async function handleConfirmPayment(id) {
     try {
       // Make a PUT request to the enquiries endpoint
-      const response = await axios.put(`/api/enquiries/${id}`, {
+      const response = await axios.put(`/api/updateEnquiry`, {
+        id: id,
         confirmed: 1,
       });
   
@@ -75,14 +76,15 @@ const AdminPage = () => {
       console.error('Error confirming payment:', error);
     }
   }
-
+  
   async function handleRetract(id) {
     try {
       // Make a PUT request to the enquiries endpoint
-      const response = await axios.put(`/api/enquiries/${id}`, {
+      const response = await axios.put(`/api/updateEnquiry`, {
+        id: id,
         confirmed: 0,
       });
-
+  
       // If the request was successful, refresh the data
       // This is a placeholder and should be replaced with your actual data fetching logic
       fetchData();
