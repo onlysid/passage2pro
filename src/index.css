@@ -32,6 +32,11 @@
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+table td p, table td a{
+  word-wrap: break-word; /* This will break the word at the end of the line */
+  max-width: 50px; /* You can set this to any value that suits your layout */
+}
+
 .gold-gradient {
   background: #ffd700;
   background: linear-gradient(-90deg, #787c40 0%, rgba(60, 51, 80, 0) 100%);

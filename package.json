@@ -16,6 +16,7 @@
     "@react-three/fiber": "^8.13.6",
     "axios": "^1.6.7",
     "framer-motion": "^10.15.0",
+    "js-cookie": "^3.0.5",
     "maath": "^0.7.0",
     "mysql": "^2.18.1",
     "mysql2": "^3.9.0",

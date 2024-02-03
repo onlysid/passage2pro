@@ -18,6 +18,8 @@ const Contact = () => {
     message: '',
     discount: '',
   });
+  // Define affiliateEmail and setAffiliateEmail using the useState hook
+  const [affiliateEmail, setAffiliateEmail] = useState(null);
   const [loading, setLoading] = useState(false);
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -53,11 +55,23 @@ const Contact = () => {
         message: '',
         discount: '',
       });
+      // Also send an email to the affiliate
+
+      // Also send an email to the affiliate if affiliateEmail is not null
+      if (affiliateEmail) {
+        emailJs.send('service_iy2qgy5', 'template_vdo3kcg', { from_name: form.name, to_name: 'Affiliate', from_email: form.email, to_email: affiliateEmail, message: form.message, player_name: form.pname, phone_number: form.tel, class: form.classID, age: form.age, discount: form.discount }, 'DOGeX_gtySU7Lggbv').then(() => {
+          console.log('Email sent to the affiliate successfully');
+        }, (error) => {
+          console.log('Error sending email to the affiliate', error);
+        });
+      }
     }, (error) => {
       setLoading(false);
       console.log(error);
       alert('Something went wrong.');
     });
+
+
   }
 
 const [showDiscountCode, setShowDiscountCode] = useState(false);
@@ -69,6 +83,8 @@ const handleDiscountCode = async () => {
   const response = await axios.post('/api/checkDiscountCode', { code: discountCode });
 
   if (response.data.success) {
+    // Get the affilaites email address
+    setAffiliateEmail(response.data.email);
     setDiscountMessage("You're getting a 20% discount! We'll make note of this in your enquiry.");
     setForm(prevForm => ({ ...prevForm, discount: discountCode })); // Update the discount field in your form state with the actual discount code
   } else {
@@ -111,7 +127,7 @@ const handleDiscountCode = async () => {
             </select>
           </label>
           <label className="flex flex-col"><span className="text-white font-medium mb-2">Player's Team</span>
-            <input required type="number" name="age" min="4" max="90" value={form.age} onChange={handleChange} placeholder="What team do you play for? (if any)" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
+            <input required type="text" value={form.team} onChange={handleChange} placeholder="What team do you play for? (if any)" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
           </label>
           <label className="flex flex-col"><span className="text-white font-medium mb-2">Your Message</span>
             <textarea type="textarea" rows="3" name="message" value={form.message} onChange={handleChange} placeholder="What do you want to say?" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
