@@ -1,0 +1,6 @@
+{
+    "routes": [
+      { "src": "/login", "dest": "/Login.jsx" },
+      { "src": "/admin", "dest": "/Admin.jsx" }
+    ]
+  }
