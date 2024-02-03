@@ -3,6 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { AuthContext } from './Login';
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import emailJs from '@emailjs/browser';
 
 const AdminPage = () => {
   const { password } = useContext(AuthContext);
@@ -67,9 +68,26 @@ const AdminPage = () => {
         id: id,
         confirmed: 1,
       });
+
+      // Get the player's name
+      const form = enquiries.find(enquiry => enquiry.id === id);
+      const affiliateEmail = form.affiliate_email;
+      const playerName = form.player_name;
+
+      // Get the affiliate's name
+      const affiliateName = form.affiliate_name;
+
+      if (!affiliateEmail) {
+        console.error('No affiliate email found');
+        return;
+      }
+      emailJs.send('service_iy2qgy5', 'template_vdo3kcg', { from_name: 'P2P', to_name: affiliateName, from_email: 'p2pfootballacademy@gmail.com', to_email: affiliateEmail, player_name: playerName }, 'DOGeX_gtySU7Lggbv').then(() => {
+        console.log('Email sent to the affiliate successfully');
+      }, (error) => {
+        console.log('Error sending email to the affiliate', error);
+      });
   
       // If the request was successful, refresh the data
-      // This is a placeholder and should be replaced with your actual data fetching logic
       fetchData();
     } catch (error) {
       // If the request failed, log the error
