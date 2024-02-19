@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, React } from 'react';
 import { motion } from 'framer-motion';
 import emailJs from '@emailjs/browser';
 import { styles } from '../styles';
@@ -12,12 +12,14 @@ const Contact = () => {
     name: '',
     pname: '',
     age: '',
+    school: '',
     email: '',
     tel: '',
     classID: 'group',
     message: '',
     discount: '',
   });
+
   // Define affiliateEmail and setAffiliateEmail using the useState hook
   const [affiliateEmail, setAffiliateEmail] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -27,12 +29,18 @@ const Contact = () => {
     setForm({ ...form, [name]: value })
   }
 
+  // We specifically care about whether a link has been opened for the holiday camps campaign
+  const queryParams = new URLSearchParams(window.location.search);
+  const classType = queryParams.get("class");
+  const campsLink = classType == "camps";
+  var campsCost = "100";
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
     console.log(form.discount);
   
-    emailJs.send('service_iy2qgy5', 'template_kle8u8k', { from_name: form.name, to_name: 'Leo', from_email: form.email, to_email: 'p2pfootballacademy@gmail.com', message: form.message, player_name: form.pname, phone_number: form.tel, class: form.classID, age: form.age, discount: form.discount }, 'DOGeX_gtySU7Lggbv').then(() => {
+    emailJs.send('service_iy2qgy5', 'template_kle8u8k', { from_name: form.name, to_name: 'Leo', from_email: form.email, to_email: 'p2pfootballacademy@gmail.com', message: form.message, player_name: form.pname, phone_number: form.tel, class: form.classID, age: form.age, school: form.school, discount: form.discount }, 'DOGeX_gtySU7Lggbv').then(() => {
       setLoading(false);
       alert('Thank you. We will get back to you as soon as possible.');
   
@@ -49,6 +57,7 @@ const Contact = () => {
         name: '',
         pname: '',
         age: '',
+        school: '',
         email: '',
         tel: '',
         classID: 'group',
@@ -65,23 +74,54 @@ const Contact = () => {
 
   }
 
-const [showDiscountCode, setShowDiscountCode] = useState(false);
-const [discountCode, setDiscountCode] = useState('');
-const [discountMessage, setDiscountMessage] = useState('');
+  const [showDiscountCode, setShowDiscountCode] = useState(false);
+  const [discountCode, setDiscountCode] = useState('');
+  const [discountMessage, setDiscountMessage] = useState('');
+  const [priceBox, setPriceBox] = useState('£100');
 
-const handleDiscountCode = async () => {
-  // Check the database for a match
-  const response = await axios.post('/api/checkDiscountCode', { code: discountCode });
+  const handleDiscountCode = async () => {
+    // Check the database for a match
+    const response = await axios.post('/api/checkDiscountCode', { code: discountCode });
 
-  if (response.data.success) {
-    // Get the affilaites email address
-    setAffiliateEmail(response.data.email);
-    setDiscountMessage("Congratulations! You have qualified for a 10% discount. We will make note of this in your enquiry.");
-    setForm(prevForm => ({ ...prevForm, discount: discountCode })); // Update the discount field in your form state with the actual discount code
-  } else {
-    setDiscountMessage('Invalid discount code.');
-  }
-};
+    if (response.data.success) {
+      // Get the affilaites email address
+      setAffiliateEmail(response.data.email);
+      setDiscountMessage("Congratulations! You have qualified for a 10% discount. We will make note of this in your enquiry.");
+      setDiscountMessage("£90! (Was £100)");
+      setForm(prevForm => ({ ...prevForm, discount: discountCode })); // Update the discount field in your form state with the actual discount code
+    } else {
+      setDiscountMessage('Invalid discount code.');
+    }
+  };
+
+  window.onload = () => {
+    // If we have selected holiday camps, go to the form and pre-select a few things
+    const selectLink = document.querySelector('select[name=classID]');
+    if(campsLink) {
+      document.getElementById('contact').scrollIntoView();
+      selectLink.value = 'camps';
+    }
+
+    // When the select link value is camps, we need to add some pricing information
+    selectLink.addEventListener('change', () => {
+      updateFormMeta(selectLink);
+    });
+
+    function updateFormMeta() {
+      // If the selectLink's current value is not the holiday camps, don't show anything. Otherwise, show pricing
+      if(selectLink.value === "camps") {
+        document.querySelector('#dateInfo').style.display = 'block';
+        document.querySelector('#pricingBox').style.display = 'block';
+      } else {
+        document.querySelector('#pricingBox').style.display = 'none';
+        document.querySelector('#dateInfo').style.display = 'none';
+      }
+    }
+
+    updateFormMeta();
+  };
+
+  
 
   return (
     <div className="xl:mt-12 xl:flex-row flex-col-reverse flex gap-10 overflow-hidden justify-center items-center">
@@ -89,26 +129,43 @@ const handleDiscountCode = async () => {
         <p className={styles.sectionSubText}>Send us a message</p>
         <h3 className={styles.sectionHeadText}>Enquire today.</h3>
 
+        <div id="dateInfo">
+          <p className="text-xl font-extrabold text-logo mt-2">Next holiday camp: April 8th-12th</p>
+        </div>
+
         <form ref={formRef} onSubmit={handleSubmit} className="mt-8 flex flex-col gap-5">
+          <hr />
+          <h3 className={"!text-2xl !uppercase " + styles.sectionHeadText + " font-bold text-center bg-white !text-dark rounded-xl px-4 py-2.5"}>Your information</h3>
           <div className="flex items-center gap-4 flex-wrap justify-center">
             <div className="flex flex-col grow basis-[20rem]"><label className="text-white font-medium mb-2">Your Name</label>
               <input required type="text" name="name" value={form.name} onChange={handleChange} placeholder="eg. John Doe" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
             </div>
-            <div className="flex flex-col grow basis-[20rem]"><label className="text-white font-medium mb-2">Player's Name</label>
-              <input required type="text" name="pname" value={form.pname} onChange={handleChange} placeholder="eg. Lionel Messi" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
-            </div>
-          </div>
-          <label className="flex flex-col"><span className="text-white font-medium mb-2">Player's Age</span>
-            <input required type="number" name="age" min="4" max="90" value={form.age} onChange={handleChange} className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
-          </label>
-          <div className="flex items-center gap-4 flex-wrap justify-center">
             <div className="flex flex-col grow basis-[20rem]"><label className="text-white font-medium mb-2">Your Email</label>
               <input required type="email" name="email" value={form.email} onChange={handleChange} placeholder="eg. danilo@juventus.com" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
             </div>
-            <div className="flex flex-col grow basis-[20rem]"><label className="text-white font-medium mb-2">Your Number</label>
-              <input required type="tel" name="tel" value={form.tel} onChange={handleChange} placeholder="eg. 11" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
+            <div className="flex flex-col grow basis-[20rem]"><label className="text-white font-medium mb-2">Your Phone Number</label>
+              <input required type="tel" name="tel" value={form.tel} onChange={handleChange} placeholder="eg. +4412345678" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
             </div>
           </div>
+          <hr />
+          <h3 className={"!text-2xl !uppercase " + styles.sectionHeadText + " font-bold text-center bg-white !text-dark rounded-xl px-4 py-2.5"}>Player's Information</h3>
+          <div className="flex items-center gap-4 flex-wrap justify-center">
+            <div className="flex flex-col grow basis-[20rem]"><label className="text-white font-medium mb-2">Player's Name</label>
+              <input required type="text" name="pname" value={form.pname} onChange={handleChange} placeholder="eg. Lionel Messi" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
+            </div>
+            <div className="flex flex-col grow basis-[8rem]"><label className="text-white font-medium mb-2">Player's Age</label>
+              <input required type="number" name="age" min="4" max="90" value={form.age} placeholder="All ages welcome" onChange={handleChange} className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
+            </div>
+          </div>
+          <div className="flex items-center gap-4 flex-wrap justify-center">
+            <div className="flex flex-col grow basis-[20rem]"><label className="text-white font-medium mb-2">Player's School</label>
+              <input required type="text" name="school" value={form.school} onChange={handleChange} placeholder="(optional)" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
+            </div>
+            <div className="flex flex-col grow basis-[20rem]"><label className="text-white font-medium mb-2">Player's Team</label>
+              <input required type="text" value={form.team} onChange={handleChange} placeholder="What team do you play for? (if any)" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
+            </div>
+          </div>
+          <hr />
           <label className="flex flex-col"><span className="text-white font-medium mb-2">Which class would you like to join?</span>
             <select value={form.class} name="classID" onChange={handleChange} className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium">
               <option value="group">Small Group</option>
@@ -117,12 +174,12 @@ const handleDiscountCode = async () => {
               <option value="finishing">Finishing School</option>
             </select>
           </label>
-          <label className="flex flex-col"><span className="text-white font-medium mb-2">Player's Team</span>
-            <input required type="text" value={form.team} onChange={handleChange} placeholder="What team do you play for? (if any)" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
-          </label>
           <label className="flex flex-col"><span className="text-white font-medium mb-2">Your Message</span>
-            <textarea type="textarea" rows="3" name="message" value={form.message} onChange={handleChange} placeholder="What do you want to say?" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
+            <textarea type="textarea" rows="3" name="message" value={form.message} onChange={handleChange} placeholder="Anything you'd like to add?" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
           </label>
+          <div id="pricingBox" className="-mt-2">
+            <p className="text-xl font-extrabold mt-2">Price: {priceBox}</p>
+          </div>
           <div className="flex flex-wrap gap-3 justify-start items-center">
             {!showDiscountCode && (
             <button className="bg-white max-w-max text-dark shadow-2xl shadow-gray px-6 py-3 rounded-bl-xl rounded-tr-3xl uppercase font-bold transition-all duration-500 hover:shadow-white hover:bg-primary hover:text-white hover:rounded-tr-none hover:rounded-bl-none hover:rounded-tl-xl hover:rounded-br-xl" type="button" onClick={() => setShowDiscountCode(true)}>Have a discount code?</button>

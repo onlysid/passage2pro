@@ -32,7 +32,13 @@ const ProjectCard = ({
         <div className='mt-5'>
           <h3 className={`${index == 0 ? "text-logo" : "text-white"}  font-bold text-[28px] mb-3`}>{name}</h3>
           <hr />
-          <p className='mt-3 text-secondary text-[16px]'>{description}</p>
+          <div className='mt-3 text-secondary text-[16px]'>          
+            {description.map((item) => (
+                <p className="mb-3" key={`${item}-${index}`}>
+                  {item}
+                </p>
+            ))}
+          </div>
         </div>
 
         <div className='my-4 flex flex-wrap gap-2'>
