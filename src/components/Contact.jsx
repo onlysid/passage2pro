@@ -87,7 +87,7 @@ const Contact = () => {
       // Get the affilaites email address
       setAffiliateEmail(response.data.email);
       setDiscountMessage("Congratulations! You have qualified for a 10% discount. We will make note of this in your enquiry.");
-      setDiscountMessage("£90! (Was £100)");
+      setPriceBox("£90! (Was £100)");
       setForm(prevForm => ({ ...prevForm, discount: discountCode })); // Update the discount field in your form state with the actual discount code
     } else {
       setDiscountMessage('Invalid discount code.');
