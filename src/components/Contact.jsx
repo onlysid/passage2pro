@@ -29,12 +29,6 @@ const Contact = () => {
     setForm({ ...form, [name]: value })
   }
 
-  // We specifically care about whether a link has been opened for the holiday camps campaign
-  const queryParams = new URLSearchParams(window.location.search);
-  const classType = queryParams.get("class");
-  const campsLink = classType == "camps";
-  var campsCost = "100";
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
@@ -94,11 +88,18 @@ const Contact = () => {
     }
   };
 
-  window.onload = () => {
+  function loadFunction() {
+
+    // We specifically care about whether a link has been opened for the holiday camps campaign
+    const queryParams = new URLSearchParams(window.location.search);
+    let classType = queryParams.get("class");
+    const campsLink = classType == "camps";
+
+    console.log("Page loaded");
     // If we have selected holiday camps, go to the form and pre-select a few things
     const selectLink = document.querySelector('select[name=classID]');
     if(campsLink) {
-      document.getElementById('contact').scrollIntoView();
+      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
       selectLink.value = 'camps';
     }
 
@@ -119,8 +120,9 @@ const Contact = () => {
     }
 
     updateFormMeta();
-  };
+  }
 
+  window.onpageshow = loadFunction;
   
 
   return (
