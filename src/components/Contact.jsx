@@ -1,4 +1,4 @@
-import { useState, useRef, React } from 'react';
+import { useState, useRef, React, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import emailJs from '@emailjs/browser';
 import { styles } from '../styles';
@@ -88,41 +88,41 @@ const Contact = () => {
     }
   };
 
-  function loadFunction() {
-
-    // We specifically care about whether a link has been opened for the holiday camps campaign
-    const queryParams = new URLSearchParams(window.location.search);
-    let classType = queryParams.get("class");
-    const campsLink = classType == "camps";
-
-    console.log("Page loaded");
-    // If we have selected holiday camps, go to the form and pre-select a few things
-    const selectLink = document.querySelector('select[name=classID]');
-    if(campsLink) {
-      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-      selectLink.value = 'camps';
-    }
-
-    // When the select link value is camps, we need to add some pricing information
-    selectLink.addEventListener('change', () => {
-      updateFormMeta(selectLink);
-    });
-
-    function updateFormMeta() {
-      // If the selectLink's current value is not the holiday camps, don't show anything. Otherwise, show pricing
-      if(selectLink.value === "camps") {
-        document.querySelector('#dateInfo').style.display = 'block';
-        document.querySelector('#pricingBox').style.display = 'block';
-      } else {
-        document.querySelector('#pricingBox').style.display = 'none';
-        document.querySelector('#dateInfo').style.display = 'none';
+  useEffect(
+    () => {
+      // We specifically care about whether a link has been opened for the holiday camps campaign
+      const queryParams = new URLSearchParams(window.location.search);
+      let classType = queryParams.get("class");
+      const campsLink = classType == "camps";
+    
+      console.log("Page loaded");
+      // If we have selected holiday camps, go to the form and pre-select a few things
+      const selectLink = document.querySelector('select[name=classID]');
+      if(campsLink) {
+        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        selectLink.value = 'camps';
       }
-    }
+    
+      // When the select link value is camps, we need to add some pricing information
+      selectLink.addEventListener('change', () => {
+        updateFormMeta(selectLink);
+      });
+    
+      function updateFormMeta() {
+        // If the selectLink's current value is not the holiday camps, don't show anything. Otherwise, show pricing
+        if(selectLink.value === "camps") {
+          document.querySelector('#dateInfo').style.display = 'block';
+          document.querySelector('#pricingBox').style.display = 'block';
+        } else {
+          document.querySelector('#pricingBox').style.display = 'none';
+          document.querySelector('#dateInfo').style.display = 'none';
+        }
+      }
+    
+      updateFormMeta();
+    }, []
+  )
 
-    updateFormMeta();
-  }
-
-  window.onpageshow = loadFunction;
   
 
   return (
