@@ -23,6 +23,7 @@ const Contact = () => {
   // Define affiliateEmail and setAffiliateEmail using the useState hook
   const [affiliateEmail, setAffiliateEmail] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [discountLoading, setDiscountLoading] = useState(false);
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -71,20 +72,29 @@ const Contact = () => {
   const [showDiscountCode, setShowDiscountCode] = useState(false);
   const [discountCode, setDiscountCode] = useState('');
   const [discountMessage, setDiscountMessage] = useState('');
-  const [priceBox, setPriceBox] = useState('£100');
+  const [priceBox, setPriceBox] = useState('£99');
 
   const handleDiscountCode = async () => {
-    // Check the database for a match
-    const response = await axios.post('/api/checkDiscountCode', { code: discountCode });
+    try {
+      setDiscountLoading(true);
 
-    if (response.data.success) {
-      // Get the affilaites email address
-      setAffiliateEmail(response.data.email);
-      setDiscountMessage("Congratulations! You have qualified for a 10% discount. We will make note of this in your enquiry.");
-      setPriceBox("£90! (Was £100)");
-      setForm(prevForm => ({ ...prevForm, discount: discountCode })); // Update the discount field in your form state with the actual discount code
-    } else {
-      setDiscountMessage('Invalid discount code.');
+      // Check the database for a match
+      const response = await axios.post('/api/checkDiscountCode', { code: discountCode });
+
+      if (response.data.success) {
+        // Get the affilaites email address
+        setAffiliateEmail(response.data.email);
+        setDiscountMessage("Congratulations! You have qualified for a 10% discount. We will make note of this in your enquiry.");
+        setPriceBox("£90! (Was £99)");
+        setForm(prevForm => ({ ...prevForm, discount: discountCode })); // Update the discount field in your form state with the actual discount code
+      } else {
+        setDiscountMessage('Invalid discount code.');
+      }
+    } catch (error) {
+      console.error('Error while handling discount code:', error);
+      setDiscountMessage('An error occurred while processing the discount code.');
+    } finally {
+      setDiscountLoading(false);
     }
   };
 
@@ -189,7 +199,15 @@ const Contact = () => {
             {showDiscountCode && (
               <div className="gap-4 flex flex-wrap">
                 <input name="discount" placeholder='Enter Code' className="bg-[#ffea76] py-3 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium max-w-full" type="text" value={discountCode} onChange={(e) => setDiscountCode(e.target.value)} />
-                <button className="bg-white max-w-max text-dark shadow-2xl shadow-gray px-6 py-3 rounded-bl-xl rounded-tr-3xl uppercase font-bold transition-all duration-500 hover:shadow-white hover:bg-green-800 hover:text-white hover:rounded-tr-none hover:rounded-bl-none hover:rounded-tl-xl hover:rounded-br-xl" type="button" onClick={handleDiscountCode}>Apply</button>
+                <button
+                  className={`bg-white max-w-max text-dark shadow-2xl shadow-gray px-6 py-3 rounded-bl-xl rounded-tr-3xl uppercase font-bold transition-all duration-500 
+                              ${discountLoading ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-white hover:bg-green-800 hover:text-white hover:rounded-tr-none hover:rounded-bl-none hover:rounded-tl-xl hover:rounded-br-xl'}`}
+                  type="button"
+                  onClick={handleDiscountCode}
+                  disabled={discountLoading}
+                >
+                  {discountLoading ? 'Applying...' : 'Apply'}
+                </button>
               </div>
             )}
             <p className="text-lg font-bold">{discountMessage}</p>
