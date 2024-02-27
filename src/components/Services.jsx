@@ -12,7 +12,7 @@ const ProjectCard = ({
   extra,
 }) => {
   return (
-    <div className="grow basis-[500px]">
+    <div id={"project-" + index} className="grow basis-[500px]">
       <Tilt
         options={{
           max: 20,

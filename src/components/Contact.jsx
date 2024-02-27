@@ -99,7 +99,7 @@ const Contact = () => {
       // If we have selected holiday camps, go to the form and pre-select a few things
       const selectLink = document.querySelector('select[name=classID]');
       if(campsLink) {
-        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('project-3').scrollIntoView({ behavior: 'smooth' });
         selectLink.value = 'camps';
       }
     
@@ -137,39 +137,39 @@ const Contact = () => {
 
         <form ref={formRef} onSubmit={handleSubmit} className="mt-8 flex flex-col gap-5">
           <hr />
-          <h3 className={"!text-2xl !uppercase " + styles.sectionHeadText + " font-bold text-center bg-white !text-dark rounded-xl px-4 py-2.5"}>Your information</h3>
+          <h3 className={"!text-2xl !uppercase " + styles.sectionHeadText + " font-bold text-center bg-white !text-dark rounded-xl px-4 py-2"}>Your information</h3>
           <div className="flex items-center gap-4 flex-wrap justify-center">
             <div className="flex flex-col grow basis-[20rem]"><label className="text-white font-medium mb-2">Your Name</label>
-              <input required type="text" name="name" value={form.name} onChange={handleChange} placeholder="eg. John Doe" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
+              <input required type="text" name="name" value={form.name} onChange={handleChange} placeholder="eg. John Doe" className="bg-[#ffea76] py-3 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
             </div>
             <div className="flex flex-col grow basis-[20rem]"><label className="text-white font-medium mb-2">Your Email</label>
-              <input required type="email" name="email" value={form.email} onChange={handleChange} placeholder="eg. danilo@juventus.com" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
+              <input required type="email" name="email" value={form.email} onChange={handleChange} placeholder="eg. danilo@juventus.com" className="bg-[#ffea76] py-3 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
             </div>
             <div className="flex flex-col grow basis-[20rem]"><label className="text-white font-medium mb-2">Your Phone Number</label>
-              <input required type="tel" name="tel" value={form.tel} onChange={handleChange} placeholder="eg. +4412345678" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
+              <input required type="tel" name="tel" value={form.tel} onChange={handleChange} placeholder="eg. +4412345678" className="bg-[#ffea76] py-3 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
             </div>
           </div>
           <hr />
-          <h3 className={"!text-2xl !uppercase " + styles.sectionHeadText + " font-bold text-center bg-white !text-dark rounded-xl px-4 py-2.5"}>Player's Information</h3>
+          <h3 className={"!text-2xl !uppercase " + styles.sectionHeadText + " font-bold text-center bg-white !text-dark rounded-xl px-4 py-2"}>Player's Information</h3>
           <div className="flex items-center gap-4 flex-wrap justify-center">
             <div className="flex flex-col grow basis-[20rem]"><label className="text-white font-medium mb-2">Player's Name</label>
-              <input required type="text" name="pname" value={form.pname} onChange={handleChange} placeholder="eg. Lionel Messi" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
+              <input required type="text" name="pname" value={form.pname} onChange={handleChange} placeholder="eg. Lionel Messi" className="bg-[#ffea76] py-3 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
             </div>
             <div className="flex flex-col grow basis-[8rem]"><label className="text-white font-medium mb-2">Player's Age</label>
-              <input required type="number" name="age" min="4" max="90" value={form.age} placeholder="All ages welcome" onChange={handleChange} className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
+              <input required type="number" name="age" min="4" max="90" value={form.age} placeholder="All ages welcome" onChange={handleChange} className="bg-[#ffea76] py-3 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
             </div>
           </div>
           <div className="flex items-center gap-4 flex-wrap justify-center">
             <div className="flex flex-col grow basis-[20rem]"><label className="text-white font-medium mb-2">Player's School</label>
-              <input type="text" name="school" value={form.school} onChange={handleChange} placeholder="(optional)" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
+              <input type="text" name="school" value={form.school} onChange={handleChange} placeholder="(optional)" className="bg-[#ffea76] py-3 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
             </div>
             <div className="flex flex-col grow basis-[20rem]"><label className="text-white font-medium mb-2">Player's Team</label>
-              <input type="text" value={form.team} onChange={handleChange} placeholder="What team do you play for? (if any)" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
+              <input type="text" value={form.team} onChange={handleChange} placeholder="What team do you play for? (if any)" className="bg-[#ffea76] py-3 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
             </div>
           </div>
           <hr />
           <label className="flex flex-col"><span className="text-white font-medium mb-2">Which class would you like to join?</span>
-            <select value={form.class} name="classID" onChange={handleChange} className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium">
+            <select value={form.class} name="classID" onChange={handleChange} className="bg-[#ffea76] py-3 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium">
               <option value="group">Small Group</option>
               <option value="individual">One to One</option>
               <option value="camps">Holiday Camps</option>
@@ -177,7 +177,7 @@ const Contact = () => {
             </select>
           </label>
           <label className="flex flex-col"><span className="text-white font-medium mb-2">Your Message</span>
-            <textarea type="textarea" rows="3" name="message" value={form.message} onChange={handleChange} placeholder="Anything you'd like to add?" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
+            <textarea type="textarea" rows="3" name="message" value={form.message} onChange={handleChange} placeholder="Anything you'd like to add?" className="bg-[#ffea76] py-3 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
           </label>
           <div id="pricingBox" className="-mt-2">
             <p className="text-xl font-extrabold mt-2">Price: {priceBox}</p>
@@ -188,16 +188,22 @@ const Contact = () => {
             )}
             {showDiscountCode && (
               <div className="gap-4 flex flex-wrap">
-                <input name="discount" placeholder='Enter Code' className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium max-w-full" type="text" value={discountCode} onChange={(e) => setDiscountCode(e.target.value)} />
+                <input name="discount" placeholder='Enter Code' className="bg-[#ffea76] py-3 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium max-w-full" type="text" value={discountCode} onChange={(e) => setDiscountCode(e.target.value)} />
                 <button className="bg-white max-w-max text-dark shadow-2xl shadow-gray px-6 py-3 rounded-bl-xl rounded-tr-3xl uppercase font-bold transition-all duration-500 hover:shadow-white hover:bg-green-800 hover:text-white hover:rounded-tr-none hover:rounded-bl-none hover:rounded-tl-xl hover:rounded-br-xl" type="button" onClick={handleDiscountCode}>Apply</button>
               </div>
             )}
             <p className="text-lg font-bold">{discountMessage}</p>
           </div>
 
-          <button type="submit" className="bg-logo max-w-max text-dark shadow-2xl shadow-gray px-8 py-4 rounded-bl-xl rounded-tr-3xl uppercase font-bold transition-all duration-500 hover:shadow-white hover:bg-dark hover:text-white hover:rounded-tr-none hover:rounded-bl-none hover:rounded-tl-xl hover:rounded-br-xl hover:tracking-widest relative group hover:px-12">
+          <button
+            type="submit"
+            className={`bg-logo max-w-max text-dark shadow-2xl shadow-gray px-8 py-3 rounded-bl-xl rounded-tr-3xl uppercase font-bold transition-all duration-500 
+                        ${loading ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-white hover:bg-dark hover:text-white hover:rounded-tr-none hover:rounded-bl-none hover:rounded-tl-xl hover:rounded-br-xl hover:tracking-widest hover:px-12'}`}
+            disabled={loading}
+          >
             {loading ? 'Sending' : 'Send'}
           </button>
+
         </form>
       </motion.div>
 

@@ -161,7 +161,7 @@ const AdminPage = () => {
         <hr />
         {/* Display the unconfirmed enquiries */}
         <div className="my-2 overflow-x-auto max-w-[40rem] xl:max-w-[80rem] sm:-mx-6 lg:-mx-8 hidden md:block">
-          <h2 className="text-center font-bold text-xl my-4">Payment Unconfirmed</h2>
+          <h2 className="text-center font-bold text-xl my-4">Payment Unconfirmed ({unconfirmedEnquiries.length})</h2>
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div className="shadow overflow-hidden border-b border-gray-700 sm:rounded-lg">
               <table className="min-w-full divide-y divide-gray-700">
@@ -211,7 +211,7 @@ const AdminPage = () => {
         </div>
 
         <div className="my-2 sm:flex sm:flex-wrap overflow-x-auto sm:-mx-6 lg:-mx-8 md:hidden">
-          <h2 className="text-center font-bold text-xl my-4 w-full">Payment Unconfirmed</h2>
+          <h2 className="text-center font-bold text-xl my-4 w-full">Payment Unconfirmed ({unconfirmedEnquiries.length})</h2>
           {unconfirmedEnquiries.length > 0 ? (
             unconfirmedEnquiries.map((enquiry) => (
               <div key={enquiry.id} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-2">
@@ -248,7 +248,7 @@ const AdminPage = () => {
         <hr />
         {/* Display the confirmed enquiries */}
         <div className="my-2 overflow-x-auto max-w-[40rem] xl:max-w-[80rem] sm:-mx-6 lg:-mx-8 hidden md:block">
-          <h2 className="text-center font-bold text-xl my-4">Payment Confirmed</h2>
+          <h2 className="text-center font-bold text-xl my-4">Payment Confirmed ({confirmedEnquiries.length})</h2>
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div className="shadow overflow-hidden border-b border-gray-700 sm:rounded-lg">
               <table className="min-w-full divide-y divide-gray-700">
@@ -298,7 +298,7 @@ const AdminPage = () => {
         </div>
 
         <div className="my-2 sm:flex sm:flex-wrap overflow-x-auto sm:-mx-6 lg:-mx-8 md:hidden">
-          <h2 className="text-center font-bold text-xl my-4 w-full">Payment Confirmed</h2>
+          <h2 className="text-center font-bold text-xl my-4 w-full">Payment Confirmed ({confirmedEnquiries.length})</h2>
           {confirmedEnquiries.length > 0 ? (
             confirmedEnquiries.map((enquiry) => (
               <div key={enquiry.id} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-2">
