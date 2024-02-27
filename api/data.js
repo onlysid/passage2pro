@@ -24,6 +24,8 @@ export default (req, res) => {
         "finishing": "4"
       }
 
+      var affiliate = null;
+
       // Get affiliate from discount code
       const affiliateQuery = 'SELECT id FROM affiliates WHERE code = ?';
       db.query(affiliateQuery, [discount], (err, results) => {
@@ -34,14 +36,14 @@ export default (req, res) => {
         let affiliate = results[0].id;
         console.log(affiliate);
         // Insert into database
-        const query = 'INSERT INTO enquiries (name, player_name, age, email, phone, class, team, affiliate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
-        db.query(query, [name, pname, age, email, tel, classes[classID], team, affiliate], (err, results) => {
-          if (err) {
-            return res.status(500).json({ error: 'Error querying database' });
-          }
+      });
+      const query = 'INSERT INTO enquiries (name, player_name, age, email, phone, class, team, affiliate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+      db.query(query, [name, pname, age, email, tel, classes[classID], team, affiliate], (err, results) => {
+        if (err) {
+          return res.status(500).json({ error: 'Error querying database' });
+        }
 
-          res.json({ success: true });
-        });
+        res.json({ success: true });
       });
     });
   } else {
