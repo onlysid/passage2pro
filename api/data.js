@@ -28,7 +28,7 @@ export default (req, res) => {
       const affiliateQuery = 'SELECT id FROM affiliates WHERE code = ?';
       db.query(affiliateQuery, [discount], (err, results) => {
         if (err) {
-          return res.status(500).json({ error: 'Error querying database' });
+          return res.status(500).json({ error: err });
         }
         
         let affiliate = results[0].id;

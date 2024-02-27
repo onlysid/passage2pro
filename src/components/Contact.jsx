@@ -161,10 +161,10 @@ const Contact = () => {
           </div>
           <div className="flex items-center gap-4 flex-wrap justify-center">
             <div className="flex flex-col grow basis-[20rem]"><label className="text-white font-medium mb-2">Player's School</label>
-              <input required type="text" name="school" value={form.school} onChange={handleChange} placeholder="(optional)" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
+              <input type="text" name="school" value={form.school} onChange={handleChange} placeholder="(optional)" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
             </div>
             <div className="flex flex-col grow basis-[20rem]"><label className="text-white font-medium mb-2">Player's Team</label>
-              <input required type="text" value={form.team} onChange={handleChange} placeholder="What team do you play for? (if any)" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
+              <input type="text" value={form.team} onChange={handleChange} placeholder="What team do you play for? (if any)" className="bg-[#ffea76] py-4 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
             </div>
           </div>
           <hr />

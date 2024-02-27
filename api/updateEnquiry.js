@@ -23,7 +23,7 @@ export default (req, res) => {
         const query = 'UPDATE enquiries SET confirmed = ? WHERE id = ?';
         db.query(query, [confirmed, id], (err, results) => {
           if (err) {
-            return res.status(500).json({ error: 'Error updating database' });
+            return res.status(500).json({ error: err });
           }
           res.json({ message: 'Enquiry updated successfully' });
         });

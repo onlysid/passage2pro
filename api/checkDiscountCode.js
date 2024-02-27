@@ -18,7 +18,7 @@ export default (req, res) => {
       const query = 'SELECT * FROM affiliates WHERE code = ?';
       db.query(query, [req.body.code], (err, results) => {
           if (err) {
-              return res.status(500).json({ error: 'Error querying database' });
+              return res.status(500).json({ error: err });
           }
   
           if (results.length > 0) {
