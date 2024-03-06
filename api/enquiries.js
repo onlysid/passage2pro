@@ -26,7 +26,7 @@ export default (req, res) => {
         } else {
             const searchTerm = req.query.search || '';
             const query = `
-                SELECT enquiries.*, affiliates.name AS affiliate_name, affiliates.email AS affiliate_email
+                SELECT enquiries.*, affiliates.name AS affiliate_name, affiliates.email AS affiliate_email, affiliates.discount AS discount
                 FROM enquiries
                 LEFT JOIN affiliates ON enquiries.affiliate = affiliates.id
                 WHERE enquiries.player_name LIKE ? OR enquiries.name LIKE ? OR enquiries.email LIKE ? OR affiliates.name LIKE ?

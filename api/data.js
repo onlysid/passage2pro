@@ -31,22 +31,20 @@ export default (req, res) => {
       db.query(affiliateQuery, [discount], (err, results) => {
         if (err) {
           return res.status(500).json({ error: err });
-        }
-        
+        }        
         let affiliate = results[0].id;
-        console.log(affiliate);
         // Insert into database
-      });
-      const query = 'INSERT INTO enquiries (name, player_name, age, email, phone, class, team, affiliate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
-      db.query(query, [name, pname, age, email, tel, classes[classID], team, affiliate], (err, results) => {
-        if (err) {
-          return res.status(500).json({ error: 'Error querying database' });
-        }
-
-        res.json({ success: true });
+        const query = 'INSERT INTO enquiries (name, player_name, age, email, phone, class, team, affiliate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+        db.query(query, [name, pname, age, email, tel, classes[classID], team, affiliate], (err, results) => {
+          if (err) {
+            return res.status(500).json({ error: 'Error querying database' });
+          }
+  
+          res.json({ success: true });
+        });
       });
     });
   } else {
-    // handle GET request as before
+    // silence...
   }
 };

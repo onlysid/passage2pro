@@ -76,16 +76,17 @@ const AdminPage = () => {
 
       // Get the affiliate's name
       const affiliateName = form.affiliate_name;
+      const discount = form.discount;
 
       if (!affiliateEmail) {
         console.error('No affiliate email found');
-        return;
+      } else {
+        emailJs.send('service_iy2qgy5', 'template_vdo3kcg', { from_name: 'P2P', to_name: affiliateName, from_email: 'p2pfootballacademy@gmail.com', to_email: affiliateEmail, player_name: playerName, discount_amount: discount }, 'DOGeX_gtySU7Lggbv').then(() => {
+          console.log('Email sent to the affiliate successfully');
+        }, (error) => {
+          console.log('Error sending email to the affiliate', error);
+        });
       }
-      emailJs.send('service_iy2qgy5', 'template_vdo3kcg', { from_name: 'P2P', to_name: affiliateName, from_email: 'p2pfootballacademy@gmail.com', to_email: affiliateEmail, player_name: playerName }, 'DOGeX_gtySU7Lggbv').then(() => {
-        console.log('Email sent to the affiliate successfully');
-      }, (error) => {
-        console.log('Error sending email to the affiliate', error);
-      });
   
       // If the request was successful, refresh the data
       fetchData();
@@ -115,6 +116,8 @@ const AdminPage = () => {
   // Separate confirmed and unconfirmed enquiries
   const confirmedEnquiries = enquiries.filter(enquiry => enquiry.confirmed === 1);
   const unconfirmedEnquiries = enquiries.filter(enquiry => enquiry.confirmed === 0);
+
+  console.log(unconfirmedEnquiries);
   
 
   // If the user is authenticated, render the admin page
@@ -167,8 +170,8 @@ const AdminPage = () => {
               <table className="min-w-full divide-y divide-gray-700">
                 <thead className="bg-gray-700">
                   <tr>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">Player Name</th>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">Name</th>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">Player Name</th>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">Age</th>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">Email</th>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">Phone</th>
@@ -182,14 +185,14 @@ const AdminPage = () => {
                   {unconfirmedEnquiries.length > 0 ? (
                     unconfirmedEnquiries.map((enquiry) => (
                       <tr key={enquiry.id}>
-                        <td className="px-6 py-4 whitespace-nowrap text-gray-200">{enquiry.player_name}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-gray-200">{enquiry.name}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-gray-200">{enquiry.player_name}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-gray-200">{enquiry.age}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-gray-200"><a href={`mailto:${enquiry.email}`} className="text-base text-purple-400 hover:text-green-500 transition-all">{enquiry.email}</a></td>
                         <td className="px-6 py-4 whitespace-nowrap text-gray-200">{enquiry.phone}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-gray-200">{mapClassIdToName(enquiry.class)}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-gray-200">{enquiry.team ?? '-'}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-gray-200"><a href={`mailto:${enquiry.affiliate_email}`} className="text-base text-purple-400 hover:text-green-500 transition-all">{enquiry.affiliate_name}</a></td>
+                        <td className="px-6 py-4 whitespace-nowrap text-gray-200"><a href={`mailto:${enquiry.affiliate_email}`} className="text-base text-purple-400 hover:text-green-500 transition-all">{(enquiry.affiliate) ? enquiry.affiliate_name + " (" + enquiry.discount + "%)" : ""}</a></td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           {enquiry.confirmed == 0 ? (
                             <button onClick={() => handleConfirmPayment(enquiry.id)} className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Confirm Payment</button>
@@ -224,7 +227,7 @@ const AdminPage = () => {
                     <p className="text-gray-200 text-sm mb-2">{enquiry.phone}</p>
                     <p className="text-gray-200 text-sm mb-2">{mapClassIdToName(enquiry.class)}</p>
                     <p className="text-gray-200 text-sm mb-2">{enquiry.team ?? '-'}</p>
-                    <p className="text-gray-200 text-sm mb-2"><a href={`mailto:${enquiry.affiliate_email}`} className="text-purple-400 hover:text-green-500 transition-all">{enquiry.affiliate_name}</a></p>
+                    <p className="text-gray-200 text-sm mb-2"><a href={`mailto:${enquiry.affiliate_email}`} className="text-purple-400 hover:text-green-500 transition-all">{(enquiry.affiliate) ? enquiry.affiliate_name + " (" + enquiry.discount + "%)" : ""}</a></p>
                   </div>
                   <div className="px-6 py-4">
                     {enquiry.confirmed === 0 ? (
@@ -276,7 +279,7 @@ const AdminPage = () => {
                         <td className="px-6 py-4 whitespace-nowrap text-gray-200">{enquiry.phone}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-gray-200">{mapClassIdToName(enquiry.class)}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-gray-200">{enquiry.team ?? '-'}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-gray-200"><a href={`mailto:${enquiry.affiliate_email}`} className="text-base text-purple-400 hover:text-green-500 transition-all">{enquiry.affiliate_name}</a></td>
+                        <td className="px-6 py-4 whitespace-nowrap text-gray-200"><a href={`mailto:${enquiry.affiliate_email}`} className="text-base text-purple-400 hover:text-green-500 transition-all">{(enquiry.affiliate) ? enquiry.affiliate_name + " (" + enquiry.discount + "%)" : ""}</a></td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           {enquiry.confirmed == 0 ? (
                             <button onClick={() => handleConfirmPayment(enquiry.id)} className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Confirm Payment</button>
@@ -311,7 +314,7 @@ const AdminPage = () => {
                     <p className="text-gray-200 text-sm mb-2">{enquiry.phone}</p>
                     <p className="text-gray-200 text-sm mb-2">{mapClassIdToName(enquiry.class)}</p>
                     <p className="text-gray-200 text-sm mb-2">{enquiry.team ?? '-'}</p>
-                    <p className="text-gray-200 text-sm mb-2"><a href={`mailto:${enquiry.affiliate_email}`} className="text-purple-400 hover:text-green-500 transition-all">{enquiry.affiliate_name}</a></p>
+                    <p className="text-gray-200 text-sm mb-2"><a href={`mailto:${enquiry.affiliate_email}`} className="text-purple-400 hover:text-green-500 transition-all">{(enquiry.affiliate) ? enquiry.affiliate_name + " (" + enquiry.discount + "%)" : ""}</a></p>
                   </div>
                   <div className="px-6 py-4">
                     {enquiry.confirmed === 0 ? (

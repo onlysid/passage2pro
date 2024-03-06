@@ -22,7 +22,7 @@ export default (req, res) => {
           }
   
           if (results.length > 0) {
-              res.json({ success: true, email: results[0].email });
+              res.json({ success: true, email: results[0].email, discount: results[0].discount });
           } else {
               res.json({ success: false });
           }

@@ -33,7 +33,6 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    console.log(form.discount);
   
     emailJs.send('service_iy2qgy5', 'template_kle8u8k', { from_name: form.name, to_name: 'Leo', from_email: form.email, to_email: 'p2pfootballacademy@gmail.com', message: form.message, player_name: form.pname, phone_number: form.tel, class: form.classID, age: form.age, school: form.school, discount: form.discount }, 'DOGeX_gtySU7Lggbv').then(() => {
       setLoading(false);
@@ -72,7 +71,8 @@ const Contact = () => {
   const [showDiscountCode, setShowDiscountCode] = useState(false);
   const [discountCode, setDiscountCode] = useState('');
   const [discountMessage, setDiscountMessage] = useState('');
-  const [priceBox, setPriceBox] = useState('£99');
+  const originalPrice = 99;
+  const [priceBox, setPriceBox] = useState(originalPrice);
 
   const handleDiscountCode = async () => {
     try {
@@ -84,8 +84,9 @@ const Contact = () => {
       if (response.data.success) {
         // Get the affilaites email address
         setAffiliateEmail(response.data.email);
-        setDiscountMessage("Congratulations! You have qualified for a 10% discount. We will make note of this in your enquiry.");
-        setPriceBox("£90! (Was £99)");
+        setDiscountMessage(`Congratulations! You have qualified for a ${response.data.discount}% discount. We will make note of this in your enquiry.`);
+        const discountPrice = Math.ceil(originalPrice * 0.01 * (100 - response.data.discount));
+        setPriceBox(`${discountPrice}! (Was £${originalPrice})`);
         setForm(prevForm => ({ ...prevForm, discount: discountCode })); // Update the discount field in your form state with the actual discount code
       } else {
         setDiscountMessage('Invalid discount code.');
@@ -190,7 +191,7 @@ const Contact = () => {
             <textarea type="textarea" rows="3" name="message" value={form.message} onChange={handleChange} placeholder="Anything you'd like to add?" className="bg-[#ffea76] py-3 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
           </label>
           <div id="pricingBox" className="-mt-2">
-            <p className="text-xl font-extrabold mt-2">Price: {priceBox}</p>
+            <p className="text-xl font-extrabold mt-2">Price: £{priceBox}</p>
           </div>
           <div className="flex flex-wrap gap-3 justify-start items-center">
             {!showDiscountCode && (
