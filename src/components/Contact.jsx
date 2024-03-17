@@ -27,7 +27,6 @@ const Contact = () => {
   const [discountLoading, setDiscountLoading] = useState(false);
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log("Form changed");
 
     setForm({ ...form, [name]: value })
   }
@@ -108,8 +107,6 @@ const Contact = () => {
       const queryParams = new URLSearchParams(window.location.search);
       let classType = queryParams.get("class");
       const campsLink = classType == "camps";
-    
-      console.log("Page loaded");
 
       // If scroll restoration is happening, turn it off
       if ('scrollRestoration' in history) {
@@ -187,7 +184,7 @@ const Contact = () => {
               <input type="text" name="school" value={form.school} onChange={handleChange} placeholder="(optional)" className="bg-[#ffea76] py-3 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
             </div>
             <div className="flex flex-col grow basis-[20rem]"><label className="text-white font-medium mb-2">Player's Team</label>
-              <input type="text" value={form.team} onChange={handleChange} placeholder="What team do you play for? (if any)" className="bg-[#ffea76] py-3 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
+              <input type="text" name="team" value={form.team} onChange={handleChange} placeholder="What team do you play for? (if any)" className="bg-[#ffea76] py-3 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
             </div>
           </div>
           <hr />
