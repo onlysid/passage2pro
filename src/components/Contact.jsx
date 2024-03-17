@@ -13,9 +13,10 @@ const Contact = () => {
     pname: '',
     age: '',
     school: '',
+    team: '',
     email: '',
     tel: '',
-    classID: 'group',
+    classID: '',
     message: '',
     discount: '',
   });
@@ -26,6 +27,7 @@ const Contact = () => {
   const [discountLoading, setDiscountLoading] = useState(false);
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log("Form changed");
 
     setForm({ ...form, [name]: value })
   }
@@ -34,7 +36,7 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
   
-    emailJs.send('service_iy2qgy5', 'template_kle8u8k', { from_name: form.name, to_name: 'Leo', from_email: form.email, to_email: 'p2pfootballacademy@gmail.com', message: form.message, player_name: form.pname, phone_number: form.tel, class: form.classID, age: form.age, school: form.school, discount: form.discount }, 'DOGeX_gtySU7Lggbv').then(() => {
+    emailJs.send('service_iy2qgy5', 'template_kle8u8k', { from_name: form.name, to_name: 'Leo', from_email: form.email, to_email: 'sid@onlysid.com', message: form.message, player_name: form.pname, phone_number: form.tel, class: form.classID, age: form.age, school: form.school, team: form.team, discount: form.discount }, 'DOGeX_gtySU7Lggbv').then(() => {
       setLoading(false);
       alert('Thank you. We will get back to you as soon as possible.');
   
@@ -52,9 +54,10 @@ const Contact = () => {
         pname: '',
         age: '',
         school: '',
+        team: '',
         email: '',
         tel: '',
-        classID: 'group',
+        classID: '',
         message: '',
         discount: '',
       });
@@ -107,11 +110,20 @@ const Contact = () => {
       const campsLink = classType == "camps";
     
       console.log("Page loaded");
+
+      // If scroll restoration is happening, turn it off
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      
       // If we have selected holiday camps, go to the form and pre-select a few things
       const selectLink = document.querySelector('select[name=classID]');
       if(campsLink) {
-        document.getElementById('project-3').scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => {
+          document.getElementById('project-3').scrollIntoView({ behavior: 'smooth' });
+        }, 500);
         selectLink.value = 'camps';
+        setForm(prevForm => ({ ...prevForm, classID: 'camps' })); // Update the discount field in your form state with the actual discount code
       }
     
       // When the select link value is camps, we need to add some pricing information
@@ -180,7 +192,7 @@ const Contact = () => {
           </div>
           <hr />
           <label className="flex flex-col"><span className="text-white font-medium mb-2">Which class would you like to join?</span>
-            <select value={form.class} name="classID" onChange={handleChange} className="bg-[#ffea76] py-3 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium">
+            <select value={form.classID} name="classID" onChange={handleChange} className="bg-[#ffea76] py-3 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium">
               <option value="group">Small Group</option>
               <option value="individual">One to One</option>
               <option value="camps">Holiday Camps</option>
