@@ -73,7 +73,7 @@ const Contact = () => {
   const [showDiscountCode, setShowDiscountCode] = useState(false);
   const [discountCode, setDiscountCode] = useState('');
   const [discountMessage, setDiscountMessage] = useState('');
-  const originalPrice = 99;
+  const originalPrice = 79.99;
   const [priceBox, setPriceBox] = useState(originalPrice);
 
   const handleDiscountCode = async () => {
@@ -152,7 +152,7 @@ const Contact = () => {
         <h3 className={styles.sectionHeadText}>Enquire today.</h3>
 
         <div id="dateInfo">
-          <p className="text-xl font-extrabold text-logo mt-2">Next holiday camp: April 8th-12th</p>
+          <p className="text-xl font-extrabold text-logo mt-2">Next holiday camp: May 28th-31st</p>
         </div>
 
         <form ref={formRef} onSubmit={handleSubmit} className="mt-8 flex flex-col gap-5">
