@@ -39,14 +39,27 @@ const Contact = () => {
       setLoading(false);
       alert('Thank you. We will get back to you as soon as possible.');
   
-      // Send data to the database
+    // Define a function to send data to the database with retry mechanism
+    function sendDataWithRetry(form, maxRetries = 3, delayBetweenRetries = 1000, currentRetry = 0) {
       axios.post('/api/data', form)
         .then(() => {
           console.log('Data sent to the database successfully');
         })
         .catch((error) => {
           console.error('Error sending data to the database', error);
+          if (currentRetry < maxRetries) {
+            console.log(`Retrying... Attempt ${currentRetry + 1}`);
+            setTimeout(() => {
+              sendDataWithRetry(form, maxRetries, delayBetweenRetries, currentRetry + 1);
+            }, delayBetweenRetries);
+          } else {
+            console.error('Max retries reached. Could not send data to the database.');
+          }
         });
+    }
+
+    // Call the function to send data with retry mechanism
+    sendDataWithRetry(form);
   
       setForm({
         name: '',
@@ -66,8 +79,6 @@ const Contact = () => {
       console.log(error);
       alert('Something went wrong.');
     });
-
-
   }
 
   const [showDiscountCode, setShowDiscountCode] = useState(false);
@@ -197,7 +208,7 @@ const Contact = () => {
             </select>
           </label>
           <label className="flex flex-col"><span className="text-white font-medium mb-2">Your Message</span>
-            <textarea type="textarea" rows="3" name="message" value={form.message} onChange={handleChange} placeholder="Anything you'd like to add?" className="bg-[#ffea76] py-3 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
+            <textarea type="textarea" rows="3" name="message" value={form.message} onChange={handleChange} placeholder="eg. Would you like to request any specific dates/times?" className="bg-[#ffea76] py-3 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
           </label>
           <div id="pricingBox" className="-mt-2">
             <p className="text-xl font-extrabold mt-2">Price: £{priceBox}</p>

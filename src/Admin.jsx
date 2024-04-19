@@ -117,9 +117,6 @@ const AdminPage = () => {
   const confirmedEnquiries = enquiries.filter(enquiry => enquiry.confirmed === 1);
   const unconfirmedEnquiries = enquiries.filter(enquiry => enquiry.confirmed === 0);
 
-  console.log(unconfirmedEnquiries);
-  
-
   // If the user is authenticated, render the admin page
   return (
     <div className="p-8 min-h-screen overflow-hidden flex justify-center">
