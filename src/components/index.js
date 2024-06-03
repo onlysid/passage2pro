@@ -10,6 +10,7 @@ import Leo from './Leo';
 import Gallery from './Gallery';
 import Footer from './Footer';
 import Socials from './Socials';
+import Maintain from './Maintain';
 import ProtectedRoute from './ProtectedRoute';
 
 export {
@@ -27,5 +28,6 @@ export {
   Gallery,
   Footer,
   Socials,
-  ProtectedRoute
+  ProtectedRoute,
+  Maintain
 }
