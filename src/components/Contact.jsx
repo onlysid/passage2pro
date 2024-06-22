@@ -34,11 +34,11 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-  
+
     emailJs.send('service_iy2qgy5', 'template_kle8u8k', { from_name: form.name, to_name: 'Leo', from_email: form.email, to_email: 'sid@onlysid.com', message: form.message, player_name: form.pname, phone_number: form.tel, class: form.classID, age: form.age, school: form.school, team: form.team, discount: form.discount }, 'DOGeX_gtySU7Lggbv').then(() => {
       setLoading(false);
       alert('Thank you. We will get back to you as soon as possible.');
-  
+
     // Define a function to send data to the database with retry mechanism
     function sendDataWithRetry(form, maxRetries = 3, delayBetweenRetries = 1000, currentRetry = 0) {
       axios.post('/api/data', form)
@@ -60,7 +60,7 @@ const Contact = () => {
 
     // Call the function to send data with retry mechanism
     sendDataWithRetry(form);
-  
+
       setForm({
         name: '',
         pname: '',
@@ -84,7 +84,7 @@ const Contact = () => {
   const [showDiscountCode, setShowDiscountCode] = useState(false);
   const [discountCode, setDiscountCode] = useState('');
   const [discountMessage, setDiscountMessage] = useState('');
-  const originalPrice = 79.99;
+  const originalPrice = 99.99;
   const [priceBox, setPriceBox] = useState(originalPrice);
 
   const handleDiscountCode = async () => {
@@ -123,7 +123,7 @@ const Contact = () => {
       if ('scrollRestoration' in history) {
         history.scrollRestoration = 'manual';
       }
-      
+
       // If we have selected holiday camps, go to the form and pre-select a few things
       const selectLink = document.querySelector('select[name=classID]');
       if(campsLink) {
@@ -133,12 +133,12 @@ const Contact = () => {
         selectLink.value = 'camps';
         setForm(prevForm => ({ ...prevForm, classID: 'camps' })); // Update the discount field in your form state with the actual discount code
       }
-    
+
       // When the select link value is camps, we need to add some pricing information
       selectLink.addEventListener('change', () => {
         updateFormMeta(selectLink);
       });
-    
+
       function updateFormMeta() {
         // If the selectLink's current value is not the holiday camps, don't show anything. Otherwise, show pricing
         if(selectLink.value === "camps") {
@@ -149,12 +149,12 @@ const Contact = () => {
           document.querySelector('#dateInfo').style.display = 'none';
         }
       }
-    
+
       updateFormMeta();
     }, []
   )
 
-  
+
 
   return (
     <div className="xl:mt-12 xl:flex-row flex-col-reverse flex gap-10 overflow-hidden justify-center items-center">
@@ -163,7 +163,7 @@ const Contact = () => {
         <h3 className={styles.sectionHeadText}>Enquire today.</h3>
 
         <div id="dateInfo">
-          <p className="text-xl font-extrabold text-logo mt-2">Next holiday camp: May 28th-31st</p>
+          <p className="text-xl font-extrabold text-logo mt-2">Next holiday camp: August 5th-9th</p>
         </div>
 
         <form ref={formRef} onSubmit={handleSubmit} className="mt-8 flex flex-col gap-5">
@@ -221,7 +221,7 @@ const Contact = () => {
               <div className="gap-4 flex flex-wrap">
                 <input name="discount" placeholder='Enter Code' className="bg-[#ffea76] py-3 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium max-w-full" type="text" value={discountCode} onChange={(e) => setDiscountCode(e.target.value)} />
                 <button
-                  className={`bg-white max-w-max text-dark shadow-2xl shadow-gray px-6 py-3 rounded-bl-xl rounded-tr-3xl uppercase font-bold transition-all duration-500 
+                  className={`bg-white max-w-max text-dark shadow-2xl shadow-gray px-6 py-3 rounded-bl-xl rounded-tr-3xl uppercase font-bold transition-all duration-500
                               ${discountLoading ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-white hover:bg-green-800 hover:text-white hover:rounded-tr-none hover:rounded-bl-none hover:rounded-tl-xl hover:rounded-br-xl'}`}
                   type="button"
                   onClick={handleDiscountCode}
@@ -236,7 +236,7 @@ const Contact = () => {
 
           <button
             type="submit"
-            className={`bg-logo max-w-max text-dark shadow-2xl shadow-gray px-8 py-3 rounded-bl-xl rounded-tr-3xl uppercase font-bold transition-all duration-500 
+            className={`bg-logo max-w-max text-dark shadow-2xl shadow-gray px-8 py-3 rounded-bl-xl rounded-tr-3xl uppercase font-bold transition-all duration-500
                         ${loading ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-white hover:bg-dark hover:text-white hover:rounded-tr-none hover:rounded-bl-none hover:rounded-tl-xl hover:rounded-br-xl hover:tracking-widest hover:px-12'}`}
             disabled={loading}
           >
