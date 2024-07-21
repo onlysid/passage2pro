@@ -9,8 +9,8 @@ export default (req, res) => {
     });
 
     db.connect((err) => {
-        // Define a timestamp to get from
-        var timestamp = 0;
+        // Define a timestamp to get from (27th June 2024)
+        var timestamp = 1719442800;
 
         if (err) {
             return res.status(500).json({ error: 'Error connecting to database' });
@@ -34,19 +34,19 @@ export default (req, res) => {
                            ROW_NUMBER() OVER (PARTITION BY enquiries.email, enquiries.player_name ORDER BY enquiries.id DESC) AS row_num
                     FROM enquiries
                     LEFT JOIN affiliates ON enquiries.affiliate = affiliates.id
-                    WHERE enquiries.timestamp > ${timestamp} 
+                    WHERE enquiries.timestamp > ${timestamp}
                     AND (enquiries.player_name LIKE ? OR enquiries.name LIKE ? OR enquiries.email LIKE ? OR affiliates.name LIKE ?)
                 ) AS subquery
                 WHERE row_num = 1
             `;
-            
+
             db.query(query, [`%${searchTerm}%`, `%${searchTerm}%`, `%${searchTerm}%`, `%${searchTerm}%`], (err, results) => {
                 if (err) {
                     return res.status(500).json({ error: 'Error querying database' });
                 }
                 res.json(results);
             });
-            
+
         }
     });
 };
