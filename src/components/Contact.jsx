@@ -163,7 +163,7 @@ const Contact = () => {
         <h3 className={styles.sectionHeadText}>Enquire today.</h3>
 
         <div id="dateInfo">
-          <p className="text-xl font-extrabold text-logo mt-2">Next holiday camp: August 5th-9th</p>
+          <p className="text-xl font-extrabold text-logo mt-2">Next holiday camp: August 27th-30th</p>
         </div>
 
         <form ref={formRef} onSubmit={handleSubmit} className="mt-8 flex flex-col gap-5">
