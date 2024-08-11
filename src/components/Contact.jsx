@@ -84,7 +84,7 @@ const Contact = () => {
   const [showDiscountCode, setShowDiscountCode] = useState(false);
   const [discountCode, setDiscountCode] = useState('');
   const [discountMessage, setDiscountMessage] = useState('');
-  const originalPrice = 99.99;
+  const originalPrice = 79.99;
   const [priceBox, setPriceBox] = useState(originalPrice);
 
   const handleDiscountCode = async () => {

@@ -153,7 +153,7 @@ const projects = [
                 "P2P aim to make this the best holiday camp, where kids love to walk in and hate to leave.",
             ],
         image: images.img00026,
-        extra: ["Next camps: August 27th-30th, 9am-3pm (Early drop off/late pick up available)", "Price: £99.99"],
+        extra: ["Next camps: August 27th-30th, 9am-3pm (Early drop off/late pick up available)", "Price: £79.99"],
     },
 ];
 
