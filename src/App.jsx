@@ -6,6 +6,9 @@ import LoginPage from './Login';
 import AdminPage from './Admin';
 
 const App = () => {
+  if(process.env.MAINTENANCE === 'true') {
+    return <Maintain />
+  }
   return (
     <AuthProvider>
       <Router>
