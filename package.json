@@ -28,7 +28,7 @@
     "react-tilt": "^1.0.2",
     "react-vertical-timeline-component": "^3.6.0",
     "three": "^0.155.0",
-    "vercel": "^33.6.1",
+    "vercel": "^33.7.1",
     "vue": "^3.4.15"
   },
   "devDependencies": {
