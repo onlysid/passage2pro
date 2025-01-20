@@ -6,7 +6,7 @@ import LoginPage from './Login';
 import AdminPage from './Admin';
 
 const App = () => {
-  if(import.meta.env.VITE_MAINTAIN) {
+  if(!import.meta.env.VITE_MAINTAIN) {
     console.log('Maintain mode is on');
     return <Maintain />
   }
