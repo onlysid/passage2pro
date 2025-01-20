@@ -5,8 +5,10 @@ import { AuthProvider } from './Login'; // Import AuthProvider from Login.jsx
 import LoginPage from './Login';
 import AdminPage from './Admin';
 
+const maintain = false;
+
 const App = () => {
-  if(!import.meta.env.VITE_MAINTAIN) {
+  if(maintain) {
     console.log('Maintain mode is on');
     return <Maintain />
   }
