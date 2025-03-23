@@ -4,18 +4,19 @@ import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
 import { projects } from "../constants";
 
-// VideoPlayer component for video type projects
+// VideoPlayer component for video type projects with iOS support
 const VideoPlayer = ({ src }) => {
   const videoRef = useRef(null);
   const [showOverlay, setShowOverlay] = useState(true);
 
-  // Auto-play muted video when it is in view and not in fullscreen.
+  // Auto-play muted video when in view and not in fullscreen.
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
+        // Only auto-play if not in fullscreen.
         if (entry.isIntersecting && !document.fullscreenElement) {
           video.play().catch((err) =>
             console.error("Auto-play error:", err)
@@ -33,15 +34,13 @@ const VideoPlayer = ({ src }) => {
     };
   }, []);
 
-  // Listen for fullscreen changes:
-  // When the video exits fullscreen, show the overlay and mute the video.
+  // Listen for fullscreen changes on non-iOS devices
   useEffect(() => {
     const handleFullScreenChange = () => {
       const fullscreenElement =
         document.fullscreenElement ||
         document.webkitFullscreenElement ||
         document.msFullscreenElement;
-
       if (!fullscreenElement) {
         // Exited fullscreen: show overlay and mute the video.
         setShowOverlay(true);
@@ -49,7 +48,6 @@ const VideoPlayer = ({ src }) => {
           videoRef.current.muted = true;
         }
       } else {
-        // In fullscreen: hide overlay.
         setShowOverlay(false);
       }
     };
@@ -62,10 +60,7 @@ const VideoPlayer = ({ src }) => {
     document.addEventListener("msfullscreenchange", handleFullScreenChange);
 
     return () => {
-      document.removeEventListener(
-        "fullscreenchange",
-        handleFullScreenChange
-      );
+      document.removeEventListener("fullscreenchange", handleFullScreenChange);
       document.removeEventListener(
         "webkitfullscreenchange",
         handleFullScreenChange
@@ -77,20 +72,43 @@ const VideoPlayer = ({ src }) => {
     };
   }, []);
 
+  // Listen for iOS-specific fullscreen events on the video element.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleIOSFullscreenBegin = () => {
+      setShowOverlay(false);
+    };
+
+    const handleIOSFullscreenEnd = () => {
+      setShowOverlay(true);
+      video.muted = true;
+    };
+
+    video.addEventListener("webkitbeginfullscreen", handleIOSFullscreenBegin);
+    video.addEventListener("webkitendfullscreen", handleIOSFullscreenEnd);
+
+    return () => {
+      video.removeEventListener("webkitbeginfullscreen", handleIOSFullscreenBegin);
+      video.removeEventListener("webkitendfullscreen", handleIOSFullscreenEnd);
+    };
+  }, []);
+
   // When the overlay is clicked:
   // - Hide the overlay
   // - Unmute and play the video
-  // - Request fullscreen
+  // - Request fullscreen (using iOS-specific API if available)
   const handlePlayClick = () => {
     setShowOverlay(false);
     const video = videoRef.current;
     if (video) {
       video.muted = false;
       video.play().catch((err) => console.error("Play error:", err));
-      if (video.requestFullscreen) {
+      if (video.webkitEnterFullscreen) {
+        video.webkitEnterFullscreen();
+      } else if (video.requestFullscreen) {
         video.requestFullscreen();
-      } else if (video.webkitRequestFullscreen) {
-        video.webkitRequestFullscreen();
       } else if (video.msRequestFullscreen) {
         video.msRequestFullscreen();
       }
@@ -118,6 +136,7 @@ const VideoPlayer = ({ src }) => {
     </div>
   );
 };
+
 
 const ProjectCard = ({ index, name, description, image, extra, type }) => {
   return (
