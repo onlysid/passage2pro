@@ -12,7 +12,11 @@ import rushden from "./rushden.png";
 import southend from "./southend.png";
 import stockport from "./stockport.png";
 
+// Video
+import video from "./camp-vid.mp4";
+
 export {
+  video,
   logo,
   star,
   herobg,

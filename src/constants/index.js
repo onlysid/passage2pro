@@ -8,6 +8,7 @@ import {
     placeholder,
     star,
     leo,
+    video,
 } from "../assets";
 
 import * as images from "../assets/images";
@@ -125,6 +126,7 @@ const projects = [
         description:
             ["Small group training allows players to work not only on their individual game but also with others of a similar level. Being in a group naturally makes certain drills and exercises more game realistic and allows further player development.",],
         image: images.img00024,
+        type: "image",
         extra: ["£120 (£20 per session)"],
     },
     {
@@ -132,6 +134,7 @@ const projects = [
         description:
             ["Training strictly customised to developing the attributes that the individual needs and wants to work on. eg Speed, Technique, Strength, Agility, Finishing etc. One to one sessions are also run as 6 week courses with the option of 60 or 30 min sessions.",],
         image: images.img00013,
+        type: "image",
         extra: [
             "1hr Sessions: £420 for 6 Weeks (£70/Session)",
             "30min Sessions: £210 for 6 Weeks (£35/Session)"
@@ -142,6 +145,7 @@ const projects = [
         description:
             ["This specialised course concentrates on shooting. Open to players of all positions but naturally for the more attacking players eg. Strikers, Forwards, Wingers and Attacking Midfielders. The art of scoring goals can be created in many forms and situations. Having the correct techniques, being ruthless but relaxed at the same time is invaluable.",],
         image: images.img00003,
+        type: "image",
         extra: ["£120 (£20 per session)"],
     },
     {
@@ -152,7 +156,8 @@ const projects = [
                 "With fun drills, challenges, tournaments, competitions (King of the rings, free style, penalty champs, free kick champs) special guests appearances, trophy presentation with podium awards ceremony and MUCH MUCH more.",
                 "P2P aim to make this the best holiday camp, where kids love to walk in and hate to leave.",
             ],
-        image: images.img00026,
+        image: video,
+        type: "video",
         extra: ["Next camps: April 14th-17th, 9am-3pm (Early drop off/late pick up available)", "Price: £80"],
     },
 ];
