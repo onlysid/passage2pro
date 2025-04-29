@@ -158,7 +158,7 @@ const projects = [
             ],
         image: video,
         type: "video",
-        extra: ["Next camps: April 14th-17th, 9am-3pm (Early drop off/late pick up available)", "Price: £80"],
+        extra: ["Next camps: May 27th-30th, 9am-3pm (Early drop off/late pick up available)", "Price: £80"],
     },
 ];
 

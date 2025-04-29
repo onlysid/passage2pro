@@ -10,7 +10,7 @@ export default (req, res) => {
 
     db.connect((err) => {
         // Define a timestamp to get from (1st March 2025)
-        var timestamp = 1740787200;
+        var timestamp = 1745096400;
 
         if (err) {
             return res.status(500).json({ error: 'Error connecting to database' });
