@@ -17,15 +17,39 @@ const AdminPage = () => {
   const handleSearch = async () => {
     try {
       const response = await axios.get(`/api/enquiries?search=${searchTerm}`);
-      setEnquiries(response.data);
+      if (Array.isArray(response.data)) {
+        setEnquiries(response.data);
+      } else {
+        console.error('Unexpected API response:', response.data);
+        setEnquiries([]);
+      }
     } catch (error) {
       console.error('Failed to fetch enquiries:', error);
     }
   };
 
+  function formatSelectedDays(selectedDays) {
+    if (!selectedDays) return '-';
+    return selectedDays
+      .split(',')
+      .map(date => {
+        const d = new Date(date.trim());
+        return d.toLocaleDateString('en-GB', { weekday: 'short' });
+      })
+      .join(',');
+  }
+
+
   useEffect(() => {
     axios.get('/api/enquiries')
-      .then(response => setEnquiries(response.data))
+      .then(response => {
+        if (Array.isArray(response.data)) {
+          setEnquiries(response.data);
+        } else {
+          console.error('Unexpected API response:', response.data);
+          setEnquiries([]);
+        }
+      })
       .catch(error => console.error('Error:', error));
   }, []);
 
@@ -175,6 +199,8 @@ const AdminPage = () => {
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">Class</th>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">Team</th>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">Affiliate</th>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">Camp</th>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">Selected Days</th>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">Action</th>
                   </tr>
                 </thead>
@@ -190,6 +216,9 @@ const AdminPage = () => {
                         <td className="px-6 py-4 whitespace-nowrap text-gray-200">{mapClassIdToName(enquiry.class)}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-gray-200">{enquiry.team ?? '-'}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-gray-200"><a href={`mailto:${enquiry.affiliate_email}`} className="text-base text-purple-400 hover:text-green-500 transition-all">{(enquiry.affiliate) ? enquiry.affiliate_name + " (" + enquiry.discount + "%)" : ""}</a></td>
+                        <td className="px-6 py-4 whitespace-nowrap text-gray-200">{enquiry.camp_id || '-'}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-gray-200">{formatSelectedDays(enquiry.selected_days)}</td>
+
                         <td className="px-6 py-4 whitespace-nowrap">
                           {enquiry.confirmed == 0 ? (
                             <button onClick={() => handleConfirmPayment(enquiry.id)} className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Confirm Payment</button>
@@ -262,6 +291,8 @@ const AdminPage = () => {
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">Class</th>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">Team</th>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">Affiliate</th>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">Camp</th>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">Selected Days</th>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">Action</th>
                   </tr>
                 </thead>
@@ -277,6 +308,8 @@ const AdminPage = () => {
                         <td className="px-6 py-4 whitespace-nowrap text-gray-200">{mapClassIdToName(enquiry.class)}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-gray-200">{enquiry.team ?? '-'}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-gray-200"><a href={`mailto:${enquiry.affiliate_email}`} className="text-base text-purple-400 hover:text-green-500 transition-all">{(enquiry.affiliate) ? enquiry.affiliate_name + " (" + enquiry.discount + "%)" : ""}</a></td>
+                        <td className="px-6 py-4 whitespace-nowrap text-gray-200">{enquiry.camp_id || '-'}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-gray-200">{formatSelectedDays(enquiry.selected_days)}</td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           {enquiry.confirmed == 0 ? (
                             <button onClick={() => handleConfirmPayment(enquiry.id)} className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Confirm Payment</button>
@@ -288,7 +321,7 @@ const AdminPage = () => {
                     ))
                   ) : (
                     <tr>
-                      <td colSpan="10" className="text-center text-gray-200 py-4">No confirmed enquiries</td>
+                      <td colSpan="11" className="text-center text-gray-200 py-4">No confirmed enquiries</td>
                     </tr>
                   )}
                 </tbody>

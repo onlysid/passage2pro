@@ -14,7 +14,7 @@ export default async (req, res) => {
     try {
       const db = await getConnectionFromPool(pool);
 
-      const { name, pname, age, email, tel, classID, team, discount } = req.body;
+      const { name, pname, age, email, tel, classID, team, discount, camp, selected_days, price_summary, discount_percent } = req.body;
 
       const classes = {
         "group": "1",
@@ -27,7 +27,23 @@ export default async (req, res) => {
 
       const timestamp = Math.floor(Date.now() / 1000);
 
-      await insertEnquiry(db, timestamp, name, pname, age, email, tel, classes[classID], team, affiliate);
+      await insertEnquiry(
+        db,
+        timestamp,
+        name,
+        pname,
+        age,
+        email,
+        tel,
+        classes[classID],
+        team,
+        affiliate,
+        camp,
+        selected_days?.join(',') || null,
+        parseInt(price_summary?.replace(/[^\d]/g, '')) || null,
+        discount_percent || null
+      );
+
 
       res.json({ success: true });
     } catch (error) {
@@ -61,12 +77,20 @@ function getAffiliateId(db, discount) {
 }
 
 // Function to insert enquiry
-function insertEnquiry(db, timestamp, name, pname, age, email, tel, classId, team, affiliate) {
+function insertEnquiry(db, timestamp, name, pname, age, email, tel, classId, team, affiliate, camp, selectedDays, price, discountPercent) {
   return new Promise((resolve, reject) => {
-    const query = 'INSERT INTO enquiries (timestamp, name, player_name, age, email, phone, class, team, affiliate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
-    db.query(query, [timestamp, name, pname, age, email, tel, classId, team, affiliate], (err, results) => {
-      if (err) reject(err);
-      resolve();
-    });
+    const query = `
+      INSERT INTO enquiries 
+      (timestamp, name, player_name, age, email, phone, class, team, affiliate, camp_id, selected_days, price, discount_percent)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `;
+    db.query(
+      query,
+      [timestamp, name, pname, age, email, tel, classId, team, affiliate, camp, selectedDays, price, discountPercent],
+      (err, results) => {
+        if (err) reject(err);
+        resolve();
+      }
+    );
   });
 }

@@ -11,6 +11,23 @@ import {
     video,
 } from "../assets";
 
+export const formatWithOrdinal = (date) => {
+  const day = date.getDate();
+  const month = date.toLocaleString('en-GB', { month: 'short' });
+
+  const getOrdinal = (n) => {
+    if (n > 3 && n < 21) return 'th';
+    switch (n % 10) {
+      case 1: return 'st';
+      case 2: return 'nd';
+      case 3: return 'rd';
+      default: return 'th';
+    }
+  };
+
+  return `${day}${getOrdinal(day)} ${month}`;
+};
+
 import * as images from "../assets/images";
 
 const services = [
@@ -120,15 +137,49 @@ const testimonials = [
     },
 ];
 
-const projects = [
+const camps = [
     {
-        name: "Small Group Session: 4-8 Players",
-        description:
-            ["Small group training allows players to work not only on their individual game but also with others of a similar level. Being in a group naturally makes certain drills and exercises more game realistic and allows further player development.",],
-        image: images.img00024,
-        type: "image",
-        extra: ["£120 (£20 per session)"],
-    },
+    id: 'leventhorpe-single',
+    name: 'Leventhorpe One-Day Special',
+    location: 'Leventhorpe School',
+    start: new Date("2025-07-25"),
+    end: new Date("2025-07-25"),
+    priceOverride: 5,
+    fullPrice: 25,
+    description: [
+      "Special One-Day Event on July 25th (Leventhorpe)",
+      "Discounted to just £5 for this day only."
+    ]
+  },
+  {
+    id: 'markhall',
+    name: 'Mark Hall',
+    location: 'Mark Hall Sports Centre',
+    start: new Date("2025-07-28"),
+    end: new Date("2025-08-01"),
+    pricePerDay: 25,
+    fullWeekPricePerDay: 20,
+    description: [
+      "Jul 28th - Aug 1st, 9am-3pm (Mark Hall)",
+      "Early pick up and late drop off available on request."
+    ],
+  },
+  {
+    id: 'leventhorpe',
+    name: 'Leventhorpe',
+    location: 'Leventhorpe School',
+    start: new Date("2025-08-11"),
+    end: new Date("2025-08-15"),
+    pricePerDay: 25,
+    fullWeekPricePerDay: 20,
+    description: [
+      "Aug 11th - Aug 15th, 9am-3pm (Leventhorpe)",
+      "Early pick up and late drop off available on request."
+    ],
+  },
+];
+
+const projects = [
     {
         name: "One to One Sessions",
         description:
@@ -157,6 +208,16 @@ const projects = [
             ],
         image: images.img00027,
         type: "image",
+        extra: [
+            "1hr Sessions: £270 for 6 Weeks (£45/Session)"
+        ],
+    },
+    {
+        name: "Small Group Session: 4-8 Players",
+        description:
+            ["Small group training allows players to work not only on their individual game but also with others of a similar level. Being in a group naturally makes certain drills and exercises more game realistic and allows further player development.",],
+        image: images.img00024,
+        type: "image",
         extra: ["£120 (£20 per session)"],
     },
     {
@@ -171,10 +232,14 @@ const projects = [
         type: "video",
         extra: [
             "Next camps:", 
-            "Jul 28th - Aug 1st, 9am-3pm (Mark Hall)",
-            "Aug 11th - Aug 15th, 9am-3pm (Levonthorpe)",
+            ...camps.map(c => {
+                const sameDay = c.start.toDateString() === c.end.toDateString();
+                const dateText = sameDay
+                    ? `${formatWithOrdinal(c.start)}`
+                    : `${formatWithOrdinal(c.start)} – ${formatWithOrdinal(c.end)}`;
+                return `${dateText}, 9am–3pm (${c.name})`;
+            }),
             "Early pick up late drop off available on request",
-            "Price: £25/day, £100 for the week."
         ],
     },
 ];
@@ -183,4 +248,4 @@ const leostats = {
     image: leo,
 }
 
-export { services, technologies, timelineEvents, testimonials, projects, leostats };
+export { services, technologies, timelineEvents, testimonials, projects, leostats, camps};

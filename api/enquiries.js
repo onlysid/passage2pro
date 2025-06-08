@@ -9,8 +9,7 @@ export default (req, res) => {
     });
 
     db.connect((err) => {
-        // Define a timestamp to get from (1st March 2025)
-        var timestamp = 1745096400;
+        const timestamp = 1745096400;
 
         if (err) {
             return res.status(500).json({ error: 'Error connecting to database' });
@@ -30,23 +29,31 @@ export default (req, res) => {
             const searchTerm = req.query.search || '';
             const query = `
                 SELECT * FROM (
-                    SELECT enquiries.*, affiliates.name AS affiliate_name, affiliates.email AS affiliate_email, affiliates.discount AS discount,
+                    SELECT enquiries.*, 
+                           affiliates.name AS affiliate_name, 
+                           affiliates.email AS affiliate_email, 
+                           affiliates.discount AS discount,
+                           enquiries.discount_percent AS discount_code,
                            ROW_NUMBER() OVER (PARTITION BY enquiries.email, enquiries.player_name ORDER BY enquiries.id DESC) AS row_num
                     FROM enquiries
                     LEFT JOIN affiliates ON enquiries.affiliate = affiliates.id
                     WHERE enquiries.timestamp > ${timestamp}
-                    AND (enquiries.player_name LIKE ? OR enquiries.name LIKE ? OR enquiries.email LIKE ? OR affiliates.name LIKE ?)
+                    AND (enquiries.player_name LIKE ? 
+                         OR enquiries.name LIKE ? 
+                         OR enquiries.email LIKE ? 
+                         OR affiliates.name LIKE ?)
                 ) AS subquery
                 WHERE row_num = 1
             `;
 
-            db.query(query, [`%${searchTerm}%`, `%${searchTerm}%`, `%${searchTerm}%`, `%${searchTerm}%`], (err, results) => {
+            db.query(query, 
+              [`%${searchTerm}%`, `%${searchTerm}%`, `%${searchTerm}%`, `%${searchTerm}%`], 
+              (err, results) => {
                 if (err) {
-                    return res.status(500).json({ error: 'Error querying database' });
+                    return res.status(500).json({ error: 'Error querying database', details: err.message });
                 }
                 res.json(results);
             });
-
         }
     });
 };
