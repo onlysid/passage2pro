@@ -20,7 +20,7 @@ export default async (req, res) => {
     try {
       const db = await getConnectionFromPool(pool);
 
-      const { name, pname, age, email, tel, classID, team, discount, camp, selected_days, price_summary, discount_percent } = req.body;
+      const { name, pname, age, email, tel, classID, team, discount, preferred_camp, selected_days, price_summary, discount_percent } = req.body;
 
       const classes = {
         "group": "1",
@@ -44,11 +44,12 @@ export default async (req, res) => {
         classes[classID],
         team,
         affiliate,
-        camp,
+        preferred_camp,
         selected_days?.join(',') || null,
         parseInt(price_summary?.replace(/[^\d]/g, '')) || null,
         discount_percent || null
       );
+      console.log(preferred_camp);
 
       await mailchimp.lists.addListMember(process.env.MAILCHIMP_AUDIENCE_ID, {
         email_address: email,

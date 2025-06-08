@@ -230,7 +230,7 @@ const AdminPage = () => {
                     ))
                   ) : (
                     <tr>
-                      <td colSpan="10" className="text-center text-gray-200 py-4">No unconfirmed enquiries</td>
+                      <td colSpan="11" className="text-center text-gray-200 py-4">No unconfirmed enquiries</td>
                     </tr>
                   )}
                 </tbody>
