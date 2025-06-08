@@ -197,7 +197,15 @@ const Contact = () => {
       setDiscountLoading(false);
     }
   };
-
+  useEffect(() => {
+    if (form.classID !== "camps") {
+      setPreferredCamp('');
+      setSelectedDays([]);
+      setDateRange([null, null]);
+      setDateLimits({ min: null, max: null });
+      setPriceBox(null);
+    }
+  }, [form.classID]);
 
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
