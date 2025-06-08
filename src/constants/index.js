@@ -140,11 +140,22 @@ const projects = [
             "30min Sessions: £210 for 6 Weeks (£35/Session)"
         ],
     },
+    // {
+    //     name: "Finishing School",
+    //     description:
+    //         ["This specialised course concentrates on shooting. Open to players of all positions but naturally for the more attacking players eg. Strikers, Forwards, Wingers and Attacking Midfielders. The art of scoring goals can be created in many forms and situations. Having the correct techniques, being ruthless but relaxed at the same time is invaluable.",],
+    //     image: images.img00003,
+    //     type: "image",
+    //     extra: ["£120 (£20 per session)"],
+    // },
     {
-        name: "Finishing School",
+        name: "2-1 “Tandem” sessions",
         description:
-            ["This specialised course concentrates on shooting. Open to players of all positions but naturally for the more attacking players eg. Strikers, Forwards, Wingers and Attacking Midfielders. The art of scoring goals can be created in many forms and situations. Having the correct techniques, being ruthless but relaxed at the same time is invaluable.",],
-        image: images.img00003,
+            [
+                "Tandem sessions also known as 2-1 sessions are where two players of a similar ability train together.",
+                "This still allows the personal attention each player needs but also allows for creating 1-1 game like scenarios and a healthy  competitiveness which can’t be recreated training as an individual.",
+            ],
+        image: images.img00027,
         type: "image",
         extra: ["£120 (£20 per session)"],
     },
@@ -158,7 +169,13 @@ const projects = [
             ],
         image: video,
         type: "video",
-        extra: ["Next camps: May 27th-30th, 9am-3pm (Early drop off/late pick up available)", "Price: £80"],
+        extra: [
+            "Next camps:", 
+            "Jul 28th - Aug 1st, 9am-3pm (Mark Hall)",
+            "Aug 11th - Aug 15th, 9am-3pm (Levonthorpe)",
+            "Early pick up late drop off available on request",
+            "Price: £25/day, £100 for the week."
+        ],
     },
 ];
 

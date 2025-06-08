@@ -5,6 +5,8 @@ import { styles } from '../styles';
 import { SectionWrapper } from '../hoc';
 import { slideIn } from '../utils/motion';
 import axios from 'axios';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const Contact = () => {
   const formRef = useRef();
@@ -25,11 +27,60 @@ const Contact = () => {
   const [affiliateEmail, setAffiliateEmail] = useState(null);
   const [loading, setLoading] = useState(false);
   const [discountLoading, setDiscountLoading] = useState(false);
+  const [dateRange, setDateRange] = useState([null, null]);
+  const [startDate, endDate] = dateRange;
+  const [dateLimits, setDateLimits] = useState({ min: null, max: null });
+  const [discountPercent, setDiscountPercent] = useState(null);
+  const [preferredCamp, setPreferredCamp] = useState('');
+  
+  const holidayCamps = [
+    { id: 'markhall', name: 'Mark Hall', start: new Date("2025-07-28"), end: new Date("2025-08-01") },
+    { id: 'leventhorpe', name: 'Leventhorpe', start: new Date("2025-08-11"), end: new Date("2025-08-15") },
+  ];
+
+  const today = new Date();
+  const nextCamp = holidayCamps.find(camp => camp.start > today);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     setForm({ ...form, [name]: value })
   }
+
+  const updateCampPrice = (start, end, min, max, discountOverride = discountPercent) => {
+    if (!start || !end || !min || !max) return;
+
+    const MS_PER_DAY = 1000 * 60 * 60 * 24;
+    const selectedDays = Math.round((end - start) / MS_PER_DAY) + 1;
+    const fullDays = Math.round((max - min) / MS_PER_DAY) + 1;
+
+    const pricePerDay = selectedDays === fullDays ? 20 : 25;
+    let total = selectedDays * pricePerDay;
+
+    if (discountOverride) {
+      const discountedTotal = Math.ceil(total * (1 - discountOverride / 100));
+      setPriceBox(`£${discountedTotal} (was £${total})`);
+    } else {
+      setPriceBox(`£${total} (£${pricePerDay}/day)`);
+    }
+  };
+
+  const formatWithOrdinal = (date) => {
+    const day = date.getDate();
+    const month = date.toLocaleString('en-GB', { month: 'short' });
+
+    const getOrdinal = (n) => {
+      if (n > 3 && n < 21) return 'th';
+      switch (n % 10) {
+        case 1: return 'st';
+        case 2: return 'nd';
+        case 3: return 'rd';
+        default: return 'th';
+      }
+    };
+
+    return `${day}${getOrdinal(day)} ${month}`;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -72,7 +123,15 @@ const Contact = () => {
         classID: '',
         message: '',
         discount: '',
+        date_start: '',
+        date_end: '',
       });
+
+      const submissionData = {
+        ...form,
+        date_start: startDate?.toISOString() || '',
+        date_end: endDate?.toISOString() || '',
+      };
 
     }, (error) => {
       setLoading(false);
@@ -84,8 +143,7 @@ const Contact = () => {
   const [showDiscountCode, setShowDiscountCode] = useState(false);
   const [discountCode, setDiscountCode] = useState('');
   const [discountMessage, setDiscountMessage] = useState('');
-  const originalPrice = 80;
-  const [priceBox, setPriceBox] = useState(originalPrice);
+  const [priceBox, setPriceBox] = useState(null);
 
   const handleDiscountCode = async () => {
     try {
@@ -95,11 +153,13 @@ const Contact = () => {
       const response = await axios.post('/api/checkDiscountCode', { code: discountCode });
 
       if (response.data.success) {
-        // Get the affilaites email address
+        const percent = response.data.discount;
+        setDiscountPercent(percent);
         setAffiliateEmail(response.data.email);
-        setDiscountMessage(`Congratulations! You have qualified for a ${response.data.discount}% discount. We will make note of this in your enquiry.`);
-        const discountPrice = Math.ceil(originalPrice * 0.01 * (100 - response.data.discount));
-        setPriceBox(`${discountPrice}! (Was £${originalPrice})`);
+        setDiscountMessage(`Congratulations! You have qualified for a ${percent}% discount. We will make note of this in your enquiry.`);
+
+        // Recalculate the camp price with the discount
+        updateCampPrice(startDate, endDate, dateLimits.min, dateLimits.max, percent);
         setForm(prevForm => ({ ...prevForm, discount: discountCode })); // Update the discount field in your form state with the actual discount code
       } else {
         setDiscountMessage('Invalid discount code.');
@@ -143,9 +203,7 @@ const Contact = () => {
         // If the selectLink's current value is not the holiday camps, don't show anything. Otherwise, show pricing
         if(selectLink.value === "camps") {
           document.querySelector('#dateInfo').style.display = 'block';
-          document.querySelector('#pricingBox').style.display = 'block';
         } else {
-          document.querySelector('#pricingBox').style.display = 'none';
           document.querySelector('#dateInfo').style.display = 'none';
         }
       }
@@ -162,9 +220,13 @@ const Contact = () => {
         <p className={styles.sectionSubText}>Send us a message</p>
         <h3 className={styles.sectionHeadText}>Enquire today.</h3>
 
-        <div id="dateInfo">
-          <p className="text-xl font-extrabold text-logo mt-2">Next holiday camp: May 27th-30th</p>
-        </div>
+        {nextCamp && (
+          <div id="dateInfo">
+            <p className="text-xl font-extrabold text-logo mt-2">
+              Next holiday camp: {nextCamp.name} ({formatWithOrdinal(nextCamp.start)} – {formatWithOrdinal(nextCamp.end)})
+            </p>
+          </div>
+        )}
 
         <form ref={formRef} onSubmit={handleSubmit} className="mt-8 flex flex-col gap-5">
           <hr />
@@ -204,15 +266,78 @@ const Contact = () => {
               <option value="group">Small Group</option>
               <option value="individual">One to One</option>
               <option value="camps">Holiday Camps</option>
-              <option value="finishing">Finishing School</option>
+              <option value="finishing">2-1 Tandem Sessions</option>
             </select>
           </label>
+          {form.classID === 'camps' && (
+            <div className="flex flex-row gap-4">
+              <div className="flex flex-col grow">
+                <label className="text-white font-medium mb-2">Preferred Camp</label>
+                <select
+                  name="presetCamp"
+                  onChange={(e) => {
+                    const selected = e.target.value;
+                    setPreferredCamp(selected); // <- update state
+
+                    if (selected === "markhall") {
+                      const min = new Date("2025-07-28");
+                      const max = new Date("2025-08-01");
+                      setDateRange([min, max]);
+                      setDateLimits({ min, max });
+                      updateCampPrice(min, max, min, max);
+                    } else if (selected === "leventhorpe") {
+                      const min = new Date("2025-08-11");
+                      const max = new Date("2025-08-15");
+                      setDateRange([min, max]);
+                      setDateLimits({ min, max });
+                      updateCampPrice(min, max, min, max);
+                    } else {
+                      setDateRange([null, null]);
+                      setDateLimits({ min: null, max: null });
+                      setPriceBox(null);
+                    }
+                  }}
+                  className="bg-[#ffea76] py-3 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium w-full"
+                >
+                  <option value="">Choose a camp</option>
+                  <option value="markhall">Mark Hall (28th July – 1st August)</option>
+                  <option value="leventhorpe">Leventhorpe (11th August – 15th August)</option>
+                </select>
+
+              </div>
+
+              {preferredCamp && (
+                <div className="flex flex-col grow">
+                  <label className="text-white font-medium mb-2">Choose days (optional)</label>
+                  <DatePicker
+                    selectsRange
+                    startDate={startDate}
+                    endDate={endDate}
+                    onChange={(update) => {
+                      setDateRange(update);
+                      const [newStart, newEnd] = update;
+                      updateCampPrice(newStart, newEnd, dateLimits.min, dateLimits.max);
+                    }}
+                    isClearable={true}
+                    placeholderText="Select a date range"
+                    className="bg-[#ffea76] py-3 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium w-full"
+                    minDate={dateLimits.min}
+                    maxDate={dateLimits.max}
+                  />
+                </div>
+              )}
+
+            </div>
+          )}
+
           <label className="flex flex-col"><span className="text-white font-medium mb-2">Your Message</span>
-            <textarea type="textarea" rows="3" name="message" value={form.message} onChange={handleChange} placeholder="eg. Would you like to request any specific dates/times?" className="bg-[#ffea76] py-3 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
+            <textarea type="textarea" rows="3" name="message" value={form.message} onChange={handleChange} placeholder="eg. Would you like to request early pick up/drop off?" className="bg-[#ffea76] py-3 px-6 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
           </label>
-          <div id="pricingBox" className="-mt-2">
-            <p className="text-xl font-extrabold mt-2">Price: £{priceBox}</p>
-          </div>
+          {priceBox && (
+            <div id="pricingBox" className="-mt-2">
+              <p className="text-xl font-extrabold mt-2">Price: {priceBox}</p>
+            </div>
+          )}
           <div className="flex flex-wrap gap-3 justify-start items-center">
             {!showDiscountCode && (
             <button className="bg-white max-w-max text-dark shadow-2xl shadow-gray px-6 py-3 rounded-bl-xl rounded-tr-3xl uppercase font-bold transition-all duration-500 hover:shadow-white hover:bg-primary hover:text-white hover:rounded-tr-none hover:rounded-bl-none hover:rounded-tl-xl hover:rounded-br-xl" type="button" onClick={() => setShowDiscountCode(true)}>Have a discount code?</button>

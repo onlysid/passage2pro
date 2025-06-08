@@ -63,15 +63,17 @@ const Leo = () => {
             </div>
 
             <div className="w-full flex items-center flex-col mt-8">
-
                 <motion.p variants={fadeIn("", "", 0.1, 1)} className="mt-4 text-secondary text-[17px] max-w-3xl text-center">
                     Having coached at a professional and semi-professional level and with over 15 years' experience, Leo has the knowledge and expertise to bring the best out of aspiring footballers.
                 </motion.p>
                 <motion.p variants={fadeIn("", "", 0.1, 1)} className="mt-4 text-secondary text-[17px] max-w-3xl text-center">
-                    Leo is a level 3 licensed UEFA B qualified coach and P2P is a fully insured and licensed football academy.
+                    Leo is a level 4 licensed UEFA “A” qualified coach and also an official scout for West Ham United.
                 </motion.p>
                 <motion.p variants={fadeIn("", "", 0.1, 1)} className="mt-4 text-secondary text-[17px] max-w-3xl text-center">
-                    The academy welcomes both male and females of all abilities with the intension of developing each individual to be the best they can be.
+                    The P2P academy welcomes both male and females of all abilities with the intension of developing each individual to be the best they can be.
+                </motion.p>
+                <motion.p variants={fadeIn("", "", 0.1, 1)} className="mt-4 text-secondary text-[17px] max-w-3xl text-center">
+                    P2P is a fully insured and ALL coaches have been DBS checked.
                 </motion.p>
             </div>
 
