@@ -308,7 +308,7 @@ const Contact = () => {
           </div>
         )}
 
-        <form ref={formRef} onSubmit={handleSubmit} className="mt-8 flex flex-col gap-3">
+        <form ref={formRef} onSubmit={handleSubmit} className="mt-4 flex flex-col gap-3">
           <label className="flex flex-col"><span className="text-white font-medium mb-2">Which class would you like to join?</span>
             <select value={form.classID} name="classID" onChange={handleChange} className="bg-[#ffea76] py-2.5 px-4 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium">
               <option value="group">Small Group</option>
@@ -369,7 +369,7 @@ const Contact = () => {
                 return camp && !camp.priceOverride;
               })() && (
                 <div className="flex flex-col items-center justify-center grow">
-                  <label className="text-white font-medium mb-2">Select days to attend</label>
+                  <label className="text-white font-medium mb-2">Select/deselect days to attend</label>
                   {dateLimits.min && dateLimits.max && (
                     <div className="flex flex-wrap items-center justify-center gap-2">
                       {generateDateArray(dateLimits.min, dateLimits.max).map(date => {
@@ -408,8 +408,9 @@ const Contact = () => {
                               }
 
                             }}
-                            className={`transition-all px-4 py-2 rounded-full text-sm font-semibold border cursor-pointer hover:scale-105
-                              ${isChecked ? 'bg-green-400 text-black border-green-400' : 'bg-transparent text-green-200 border-red-400 hover:bg-green-200 hover:text-black'}`}
+                            className={`transition-all px-4 py-2 rounded-full text-sm font-semibold border cursor-pointer
+                              ${isChecked ? 'bg-green-400 text-black border-green-400' : 'bg-transparent text-green-200 border-red-400'}`}
+
                           >
                             {label}
                           </button>
@@ -424,6 +425,31 @@ const Contact = () => {
 
             </div>
           )}
+          {priceBox && (
+            <div id="pricingBox">
+              <p className="text-xl font-extrabold mt-2">Price: {priceBox}</p>
+            </div>
+          )}
+          <div className="flex flex-wrap gap-3 justify-start items-center">
+            {!showDiscountCode && (
+            <button className="bg-white max-w-max text-dark shadow-2xl shadow-gray px-6 py-3 rounded-bl-xl rounded-tr-3xl uppercase font-bold transition-all duration-500 hover:shadow-white hover:bg-primary hover:text-white hover:rounded-tr-none hover:rounded-bl-none hover:rounded-tl-xl hover:rounded-br-xl" type="button" onClick={() => setShowDiscountCode(true)}>Have a discount code?</button>
+            )}
+            {showDiscountCode && (
+              <div className="gap-4 flex flex-wrap">
+                <input name="discount" placeholder='Enter Code' className="bg-[#ffea76] py-2.5 px-4 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium max-w-full" type="text" value={discountCode} onChange={(e) => setDiscountCode(e.target.value)} />
+                <button
+                  className={`bg-white max-w-max text-dark shadow-2xl shadow-gray px-6 py-3 rounded-bl-xl rounded-tr-3xl uppercase font-bold transition-all duration-500
+                              ${discountLoading ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-white hover:bg-green-800 hover:text-white hover:rounded-tr-none hover:rounded-bl-none hover:rounded-tl-xl hover:rounded-br-xl'}`}
+                  type="button"
+                  onClick={handleDiscountCode}
+                  disabled={discountLoading}
+                >
+                  {discountLoading ? 'Applying...' : 'Apply'}
+                </button>
+              </div>
+            )}
+            <p className="text-lg font-bold">{discountMessage}</p>
+          </div>
           <hr />
           <h3 className={"!text-xl !uppercase " + styles.sectionHeadText + " font-bold text-center bg-white !text-dark rounded-xl px-4 py-2"}>Your information</h3>
           <div className="flex items-center gap-4 flex-wrap justify-center">
@@ -460,31 +486,6 @@ const Contact = () => {
           <label className="flex flex-col"><span className="text-white font-medium mb-2">Your Message</span>
             <textarea type="textarea" rows="3" name="message" value={form.message} onChange={handleChange} placeholder="eg. Would you like to request early pick up/drop off?" className="bg-[#ffea76] py-2.5 px-4 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium" />
           </label>
-          {priceBox && (
-            <div id="pricingBox" className="-mt-2">
-              <p className="text-xl font-extrabold mt-2">Price: {priceBox}</p>
-            </div>
-          )}
-          <div className="flex flex-wrap gap-3 justify-start items-center">
-            {!showDiscountCode && (
-            <button className="bg-white max-w-max text-dark shadow-2xl shadow-gray px-6 py-3 rounded-bl-xl rounded-tr-3xl uppercase font-bold transition-all duration-500 hover:shadow-white hover:bg-primary hover:text-white hover:rounded-tr-none hover:rounded-bl-none hover:rounded-tl-xl hover:rounded-br-xl" type="button" onClick={() => setShowDiscountCode(true)}>Have a discount code?</button>
-            )}
-            {showDiscountCode && (
-              <div className="gap-4 flex flex-wrap">
-                <input name="discount" placeholder='Enter Code' className="bg-[#ffea76] py-2.5 px-4 rounded-lg text-dark placeholder:text-dark/50 border-none font-medium max-w-full" type="text" value={discountCode} onChange={(e) => setDiscountCode(e.target.value)} />
-                <button
-                  className={`bg-white max-w-max text-dark shadow-2xl shadow-gray px-6 py-3 rounded-bl-xl rounded-tr-3xl uppercase font-bold transition-all duration-500
-                              ${discountLoading ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-white hover:bg-green-800 hover:text-white hover:rounded-tr-none hover:rounded-bl-none hover:rounded-tl-xl hover:rounded-br-xl'}`}
-                  type="button"
-                  onClick={handleDiscountCode}
-                  disabled={discountLoading}
-                >
-                  {discountLoading ? 'Applying...' : 'Apply'}
-                </button>
-              </div>
-            )}
-            <p className="text-lg font-bold">{discountMessage}</p>
-          </div>
 
           <button
             type="submit"
