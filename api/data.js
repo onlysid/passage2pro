@@ -46,7 +46,7 @@ export default async (req, res) => {
         affiliate,
         preferred_camp,
         selected_days?.join(',') || null,
-        parseInt(price_summary?.replace(/[^\d]/g, '')) || null,
+        price_summary,
         discount_percent || null
       );
       console.log(preferred_camp);
