@@ -16,6 +16,26 @@ const pool = createPool({
   database: process.env.MYSQL_DATABASE,
 });
 
+function formatPhoneNumber(phone) {
+  const cleaned = phone.replace(/[^0-9]/g, '');
+
+  // Handle UK numbers starting with 0
+  if (cleaned.startsWith('0')) {
+    return '+44' + cleaned.slice(1);
+  }
+
+  // Already has country code
+  if (cleaned.startsWith('44')) {
+    return '+' + cleaned;
+  }
+
+  if (cleaned.startsWith('7') && cleaned.length === 10) {
+    return '+44' + cleaned;
+  }
+
+  return '+' + cleaned; // fallback
+}
+
 export default async (req, res) => {
   if (req.method === 'POST') {
     try {
@@ -52,6 +72,7 @@ export default async (req, res) => {
       );
 
       const emailHash = crypto.createHash('md5').update(email.toLowerCase()).digest('hex');
+      const formattedTel = formatPhoneNumber(tel);
 
       await mailchimp.lists.setListMember(process.env.MAILCHIMP_AUDIENCE_ID, emailHash, {
         email_address: email,
@@ -59,8 +80,8 @@ export default async (req, res) => {
         merge_fields: {
           FNAME: name.split(' ')[0],
           LNAME: name.split(' ')[1] || '',
-          PHONE: tel,
-          SMSPHONE: tel
+          PHONE: formattedTel,
+          SMSPHONE: formattedTel
         }
       });
 
