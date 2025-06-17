@@ -49,7 +49,6 @@ export default async (req, res) => {
         price_summary,
         discount_percent || null
       );
-      console.log(preferred_camp);
 
       await mailchimp.lists.addListMember(process.env.MAILCHIMP_AUDIENCE_ID, {
         email_address: email,
@@ -57,6 +56,8 @@ export default async (req, res) => {
         merge_fields: {
           FNAME: name.split(' ')[0],
           LNAME: name.split(' ')[1] || '',
+          PHONE: tel,
+          SMSPHONE: tel
         }
       });
 
