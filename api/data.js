@@ -50,9 +50,9 @@ export default async (req, res) => {
         discount_percent || null
       );
 
-      await mailchimp.lists.addListMember(process.env.MAILCHIMP_AUDIENCE_ID, {
+      await mailchimp.lists.addListMember(process.env.MAILCHIMP_AUDIENCE_ID, mailchimp.utils.md5(email.toLowerCase()), {
         email_address: email,
-        status: "subscribed",
+        status_if_new: "subscribed",
         merge_fields: {
           FNAME: name.split(' ')[0],
           LNAME: name.split(' ')[1] || '',
