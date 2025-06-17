@@ -53,7 +53,7 @@ export default async (req, res) => {
 
       const emailHash = crypto.createHash('md5').update(email.toLowerCase()).digest('hex');
 
-      await mailchimp.lists.addListMember(process.env.MAILCHIMP_AUDIENCE_ID, emailHash, {
+      await mailchimp.lists.setListMember(process.env.MAILCHIMP_AUDIENCE_ID, emailHash, {
         email_address: email,
         status_if_new: "subscribed",
         merge_fields: {
