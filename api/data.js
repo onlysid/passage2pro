@@ -1,5 +1,6 @@
 import { createPool } from 'mysql';
 import mailchimp from '@mailchimp/mailchimp_marketing';
+import crypto from 'crypto'
 
 mailchimp.setConfig({
   apiKey: process.env.MAILCHIMP_API_KEY,
@@ -50,7 +51,9 @@ export default async (req, res) => {
         discount_percent || null
       );
 
-      await mailchimp.lists.addListMember(process.env.MAILCHIMP_AUDIENCE_ID, mailchimp.utils.md5(email.toLowerCase()), {
+      const emailHash = crypto.createHash('md5').update(email.toLowerCase()).digest('hex');
+
+      await mailchimp.lists.addListMember(process.env.MAILCHIMP_AUDIENCE_ID, emailHash, {
         email_address: email,
         status_if_new: "subscribed",
         merge_fields: {
