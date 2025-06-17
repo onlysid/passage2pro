@@ -35,6 +35,7 @@ const Contact = () => {
   const [discountPercent, setDiscountPercent] = useState(null);
   const [preferredCamp, setPreferredCamp] = useState('');
   const [selectedDays, setSelectedDays] = useState([]);
+  const [priceTotal, setPriceTotal] = useState(null);
 
   const generateDateArray = (start, end) => {
     const arr = [];
@@ -58,6 +59,7 @@ const Contact = () => {
   const updateCampPrice = (selectedDates = selectedDays, min, max, discountOverride = discountRef.current) => {
     if (!selectedDates.length || !min || !max) {
       setPriceBox(null);
+      setPriceTotal(null);
       return;
     }
 
@@ -66,6 +68,8 @@ const Contact = () => {
 
     const pricePerDay = selectedCount === fullDays ? 20 : 25;
     let total = selectedCount * pricePerDay;
+
+    setPriceTotal(discountOverride ? Math.ceil(total * (1 - discountOverride / 100)) : total);
 
     if (discountOverride) {
       const discountedTotal = Math.ceil(total * (1 - discountOverride / 100));
@@ -147,7 +151,7 @@ const Contact = () => {
       date_end: endDate?.toISOString() || '',
       preferred_camp: preferredCamp,
       selected_days: selectedDays.map(d => d.toISOString()),
-      price_summary: priceBox,
+      price_summary: priceTotal,
       discount_percent: discountPercent,
       affiliate_email: affiliateEmail,
     };
