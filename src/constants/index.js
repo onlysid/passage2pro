@@ -177,6 +177,19 @@ const camps = [
       "Early pick up and late drop off available on request."
     ],
   },
+  {
+    id: 'leventhorpe2',
+    name: 'Leventhorpe (Late August)',
+    location: 'Leventhorpe School',
+    start: new Date("2025-08-25"),
+    end: new Date("2025-08-29"),
+    pricePerDay: 25,
+    fullWeekPricePerDay: 20,
+    description: [
+      "Aug 25th - Aug 29th, 9am-3pm (Leventhorpe)",
+      "Early pick up and late drop off available on request."
+    ],
+  },
 ];
 
 const projects = [
