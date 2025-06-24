@@ -179,7 +179,7 @@ const camps = [
   },
   {
     id: 'leventhorpe2',
-    name: 'Leventhorpe (Late August)',
+    name: 'Leventhorpe',
     location: 'Leventhorpe School',
     start: new Date("2025-08-25"),
     end: new Date("2025-08-29"),
