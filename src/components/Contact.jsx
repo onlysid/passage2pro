@@ -412,11 +412,20 @@ const Contact = () => {
                               }
 
                             }}
-                            className={`transition-all px-4 py-2 rounded-full text-sm font-semibold border cursor-pointer
+                            className={`transition-all px-3 shrink-0 flex gap-2 justify-center items-center py-2 rounded-full text-sm font-semibold border cursor-pointer
                               ${isChecked ? 'bg-green-400 text-black border-green-400' : 'bg-transparent text-green-200 border-red-400'}`}
 
                           >
-                            {label}
+                            <span className="shrink-0">
+                              {label}
+                            </span>
+                            {isChecked ? (
+                            <svg className="shrink-0 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                              <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/>
+                            </svg>
+                            ) : (
+                              <div className="w-5 h-5 rounded-full bg-white/50"></div>
+                            )}
                           </button>
                         );
                       })}
@@ -432,6 +441,7 @@ const Contact = () => {
           {priceBox && (
             <div id="pricingBox">
               <p className="text-xl font-extrabold mt-2">Price: {priceBox}</p>
+              <p>Number of days: {selectedDays.length}</p>
             </div>
           )}
           <div className="flex flex-wrap gap-3 justify-start items-center">

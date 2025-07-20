@@ -181,12 +181,12 @@ const camps = [
     id: 'leventhorpe2',
     name: 'Leventhorpe',
     location: 'Leventhorpe School',
-    start: new Date("2025-08-25"),
+    start: new Date("2025-08-26"),
     end: new Date("2025-08-29"),
     pricePerDay: 25,
     fullWeekPricePerDay: 20,
     description: [
-      "Aug 25th - Aug 29th, 9am-3pm (Leventhorpe)",
+      "Aug 26th - Aug 29th, 9am-3pm (Leventhorpe)",
       "Early pick up and late drop off available on request."
     ],
   },
