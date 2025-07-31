@@ -138,32 +138,32 @@ const testimonials = [
 ];
 
 const camps = [
-    {
-    id: 'leventhorpe-single',
-    name: 'Leventhorpe One-Day Special',
-    location: 'Leventhorpe School',
-    start: new Date("2025-07-25"),
-    end: new Date("2025-07-25"),
-    priceOverride: 5,
-    fullPrice: 25,
-    description: [
-      "Special One-Day Event on July 25th (Leventhorpe)",
-      "Discounted to just £5 for this day only."
-    ]
-  },
-  {
-    id: 'markhall',
-    name: 'Mark Hall',
-    location: 'Mark Hall Sports Centre',
-    start: new Date("2025-07-28"),
-    end: new Date("2025-08-01"),
-    pricePerDay: 25,
-    fullWeekPricePerDay: 20,
-    description: [
-      "Jul 28th - Aug 1st, 9am-3pm (Mark Hall)",
-      "Early pick up and late drop off available on request."
-    ],
-  },
+//     {
+//     id: 'leventhorpe-single',
+//     name: 'Leventhorpe One-Day Special',
+//     location: 'Leventhorpe School',
+//     start: new Date("2025-07-25"),
+//     end: new Date("2025-07-25"),
+//     priceOverride: 5,
+//     fullPrice: 25,
+//     description: [
+//       "Special One-Day Event on July 25th (Leventhorpe)",
+//       "Discounted to just £5 for this day only."
+//     ]
+//   },
+//   {
+//     id: 'markhall',
+//     name: 'Mark Hall',
+//     location: 'Mark Hall Sports Centre',
+//     start: new Date("2025-07-28"),
+//     end: new Date("2025-08-01"),
+//     pricePerDay: 25,
+//     fullWeekPricePerDay: 20,
+//     description: [
+//       "Jul 28th - Aug 1st, 9am-3pm (Mark Hall)",
+//       "Early pick up and late drop off available on request."
+//     ],
+//   },
   {
     id: 'leventhorpe',
     name: 'Leventhorpe',
